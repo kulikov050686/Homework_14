@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject>Homework_14.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\CloseBlack.PNG" />
+    <None Remove="Assets\CloseBlue.PNG" />
+    <None Remove="Assets\CloseRed.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommandLibrary\CommandLibrary.csproj" />
+    <ProjectReference Include="..\ConvertersLibrary\ConverterLibrary.csproj" />
+    <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj" />
+    <ProjectReference Include="..\UserControlLibrary\UserControlLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\CloseBlack.PNG" />
+    <Resource Include="Assets\CloseBlue.PNG" />
+    <Resource Include="Assets\CloseRed.PNG" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="UserControlLibrary.MainMenuUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserControlLibrary"
+             xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
+             mc:Ignorable="d" 
+             Height="20" 
+             Width="50">
+
+    <UserControl.Resources>
+        
+        <!---->
+        <Style TargetType="Menu" x:Key="mainMenu">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!---->
+        <Style x:Key="mainMenuItemStyle" TargetType="{x:Type MenuItem}">
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>                        
+        </Style>
+        
+    </UserControl.Resources>
+        
+    <Viewbox Stretch="Fill">
+        <Menu Style="{StaticResource mainMenu}">
+            <MenuItem Style="{StaticResource mainMenuItemStyle}" 
+                      Header="Файл">
+                <MenuItem Header="Сохранить"/>
+                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Выход"
+                          CommandParameter="{Binding ParentWindowUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}">
+                    <MenuItem.Command>
+                        <cmd:CloseWindowCommand/>
+                    </MenuItem.Command>
+                </MenuItem>                
+            </MenuItem>            
+        </Menu>
+    </Viewbox>
+</UserControl>
