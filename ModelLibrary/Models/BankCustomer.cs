@@ -1,4 +1,5 @@
-﻿using EnumLibrary;
+﻿using BaseClassesLibrary;
+using EnumLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ namespace ModelLibrary
     /// <summary>
     /// Класс Клиент Банка
     /// </summary>
-    public class BankCustomer : BaseClassModelINPC, IBankCustomer
+    public class BankCustomer : BaseModel, IBankCustomer
     {
         #region Закрытые поля
 

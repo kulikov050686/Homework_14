@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BaseClassesLibrary\BaseClassesLibrary.csproj" />
     <ProjectReference Include="..\EnumLibrary\EnumLibrary.csproj" />
   </ItemGroup>
 

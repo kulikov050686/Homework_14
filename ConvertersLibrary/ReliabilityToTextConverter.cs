@@ -1,4 +1,5 @@
-﻿using EnumLibrary;
+﻿using BaseClassesLibrary;
+using EnumLibrary;
 using System;
 using System.Globalization;
 
@@ -7,7 +8,7 @@ namespace ConverterLibrary
     /// <summary>
     /// 
     /// </summary>
-    public class ReliabilityToTextConverter : BaseValueConverter<ReliabilityToTextConverter>
+    public class ReliabilityToTextConverter : BaseConverter<ReliabilityToTextConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

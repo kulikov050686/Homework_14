@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using BaseClassesLibrary;
+using System.Windows;
 
 namespace CommandLibrary
 {

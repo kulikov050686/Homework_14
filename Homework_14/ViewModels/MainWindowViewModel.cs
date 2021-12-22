@@ -1,4 +1,5 @@
-﻿using Homework_14.Services;
+﻿using BaseClassesLibrary;
+using Homework_14.Services;
 using ServiceLibrary;
 using System.Windows.Controls;
 
@@ -7,7 +8,7 @@ namespace Homework_14.ViewModels
     /// <summary>
     /// Модель-Представление главного окна
     /// </summary>
-    public class MainWindowViewModel : BaseClassViewModelINPC
+    public class MainWindowViewModel : BaseViewModel
     {
         #region Закрытые поля
 

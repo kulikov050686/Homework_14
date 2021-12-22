@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CommandLibrary
+namespace BaseClassesLibrary
 {
     /// <summary>
-    /// Базовый класс комманд
+    /// Базовый класс комманды
     /// </summary>
     public abstract class BaseCommand : ICommand
     {

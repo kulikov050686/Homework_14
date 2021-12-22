@@ -1,4 +1,5 @@
-﻿using EnumLibrary;
+﻿using BaseClassesLibrary;
+using EnumLibrary;
 using System;
 using System.Globalization;
 
@@ -7,7 +8,7 @@ namespace ConverterLibrary
     /// <summary>
     /// 
     /// </summary>
-    public class IntToReliabilityConverter : BaseValueConverter<IntToReliabilityConverter>
+    public class IntToReliabilityConverter : BaseConverter<IntToReliabilityConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

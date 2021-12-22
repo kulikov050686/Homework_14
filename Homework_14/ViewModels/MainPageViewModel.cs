@@ -1,4 +1,5 @@
-﻿using CommandLibrary;
+﻿using BaseClassesLibrary;
+using CommandLibrary;
 using Homework_14.Services;
 using ServiceLibrary;
 using System.Windows.Input;
@@ -8,7 +9,7 @@ namespace Homework_14.ViewModels
     /// <summary>
     /// Класс Модели-Представления главной страницы
     /// </summary>
-    public class MainPageViewModel : BaseClassViewModelINPC
+    public class MainPageViewModel : BaseViewModel
     {
         #region Закрытые поля
 

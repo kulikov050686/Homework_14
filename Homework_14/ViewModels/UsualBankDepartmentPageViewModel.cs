@@ -1,4 +1,5 @@
-﻿using CommandLibrary;
+﻿using BaseClassesLibrary;
+using CommandLibrary;
 using Homework_14.Services;
 using Microsoft.Extensions.DependencyInjection;
 using ModelLibrary;
@@ -11,7 +12,7 @@ namespace Homework_14.ViewModels
     /// <summary>
     /// Модель-Представление страницы департамента с обычными клиентами
     /// </summary>
-    public class UsualBankDepartmentPageViewModel : BaseClassViewModelINPC
+    public class UsualBankDepartmentPageViewModel : BaseViewModel
     {
         #region Закрытые поля
                

@@ -6,12 +6,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Markup;
 
-namespace Homework_14.ViewModels
+namespace BaseClassesLibrary
 {
     /// <summary>
     /// Базовый класс модели-представления с реализацией интерфейса INotifyPropertyChanged
     /// </summary>
-    public abstract class BaseClassViewModelINPC : MarkupExtension, INotifyPropertyChanged
+    public abstract class BaseViewModel : MarkupExtension, INotifyPropertyChanged
     {
         /// <summary>
         /// Событие для извещения об изменения свойства

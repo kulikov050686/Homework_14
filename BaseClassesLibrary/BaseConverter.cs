@@ -3,13 +3,13 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace ConverterLibrary
+namespace BaseClassesLibrary
 {
     /// <summary>
     /// Конвертер базовых значений, который позволяет использовать XAML напрямую
     /// </summary>
     /// <typeparam name="T"> Тип преобразователя значения </typeparam>
-    public abstract class BaseValueConverter<T> : MarkupExtension, IValueConverter where T: class, new()
+    public abstract class BaseConverter<T> : MarkupExtension, IValueConverter where T: class, new()
     {
         /// <summary>
         /// Единственный статический экземпляр этого преобразователя значения

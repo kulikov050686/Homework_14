@@ -1,4 +1,5 @@
-﻿using EnumLibrary;
+﻿using BaseClassesLibrary;
+using EnumLibrary;
 using System;
 using System.Text.Json.Serialization;
 
@@ -7,7 +8,7 @@ namespace ModelLibrary
     /// <summary>
     /// Класс Депозитарный счёт
     /// </summary>
-    public class DepositoryAccount : BaseClassModelINPC, IDepositoryAccount
+    public class DepositoryAccount : BaseModel, IDepositoryAccount
     {
         #region Закрытые поля
 

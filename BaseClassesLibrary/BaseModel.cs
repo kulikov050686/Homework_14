@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ModelLibrary
+namespace BaseClassesLibrary
 {
     /// <summary>
     /// Базовый класс модели
     /// </summary>
-    public abstract class BaseClassModelINPC : INotifyPropertyChanged
+    public abstract class BaseModel : INotifyPropertyChanged
     {
         /// <summary>
         /// Событие для извещения об изменения свойства
