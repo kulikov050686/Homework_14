@@ -19,7 +19,7 @@ namespace Homework_14.Services
         public UsualBankDepartmentPage UsualBankDepartmentPage => App.Host.Services.GetRequiredService<UsualBankDepartmentPage>();
 
         /// <summary>
-        /// Страница департаментас vip-клиента
+        /// Страница департамента с vip-клиента
         /// </summary>
         public VipBankDepartmentPage VipBankDepartmentPage => App.Host.Services.GetRequiredService<VipBankDepartmentPage>();
 

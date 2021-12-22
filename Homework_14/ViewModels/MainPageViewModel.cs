@@ -6,7 +6,7 @@ using System.Windows.Input;
 namespace Homework_14.ViewModels
 {
     /// <summary>
-    /// Класс Модели-Представления гланой страницы
+    /// Класс Модели-Представления главной страницы
     /// </summary>
     public class MainPageViewModel : BaseClassViewModelINPC
     {
