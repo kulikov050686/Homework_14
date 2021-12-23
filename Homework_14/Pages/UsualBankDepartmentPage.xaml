@@ -134,6 +134,16 @@
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ListBox>
+
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить клиента"
+                              Command="{Binding AddBankCustomerCommand}"/>
+                    <MenuItem Header="Редактировать данные клиента"/>
+                    <MenuItem Header="Удалить клиента"
+                              Command="{Binding DeleteBankCustomerCommand}"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>  
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using BaseClassesLibrary;
 using CommandLibrary;
+using DialogLibrary;
 using Homework_14.Services;
 using Microsoft.Extensions.DependencyInjection;
 using ModelLibrary;
@@ -16,9 +17,11 @@ namespace Homework_14.ViewModels
     {
         #region Закрытые поля
                
-        private BankDepartmentRepository _bankDepartmentRepository;
+        private BankDepartmentManager _bankDepartmentManager;
         private PageLocatorService _pageLocatorService;
         private PageNavigator _pageNavigator;
+        private BankCustomerDialog _bankCustomerDialog;
+        private BankCustomerManager _bankCustomerManager;
 
         private IBankDepartment _bankDepartment;
         private IBankCustomer _selectedBankCustomer;
@@ -57,15 +60,48 @@ namespace Homework_14.ViewModels
 
         #endregion
 
+        #region Команда добавить клиента банка
+
+        private ICommand _addBankCustomerCommand = default;
+        public ICommand AddBankCustomerCommand
+        {
+            get => _addBankCustomerCommand ??= new RelayCommand((obj) => 
+            {
+                var bankCustomer = _bankCustomerDialog.Create(_bankDepartment.StatusDepartment);
+                if (bankCustomer is null) return;
+            });
+        }
+
+        #endregion
+
+        #region Команда удалить клиента банка
+
+        private ICommand _deleteBankCustomerCommand = default;
+        public ICommand DeleteBankCustomerCommand
+        {
+            get => _deleteBankCustomerCommand ??= new RelayCommand((obj) =>
+            {
+                _bankCustomerManager.Delete(SelectedBankCustomer, _bankDepartment);
+            }, (obj) => SelectedBankCustomer != null);
+        }
+
+        #endregion
+
         #region Конструктор
 
-        public UsualBankDepartmentPageViewModel()
+        public UsualBankDepartmentPageViewModel(BankDepartmentManager bankDepartmentManager,
+                                                PageLocatorService pageLocatorService,
+                                                PageNavigator pageNavigator,
+                                                BankCustomerDialog bankCustomerDialog,
+                                                BankCustomerManager bankCustomerManager)
         {
-            _bankDepartmentRepository = App.Host.Services.GetRequiredService<BankDepartmentRepository>();
-            _pageLocatorService = App.Host.Services.GetRequiredService<PageLocatorService>();
-            _pageNavigator = App.Host.Services.GetRequiredService<PageNavigator>();
-                        
-            _bankDepartment = _bankDepartmentRepository.GetAll()[0];
+            _bankDepartmentManager = bankDepartmentManager;
+            _pageLocatorService = pageLocatorService;
+            _pageNavigator = pageNavigator;
+            _bankCustomerDialog = bankCustomerDialog;
+            _bankCustomerManager = bankCustomerManager;
+
+            _bankDepartment = _bankDepartmentManager.Departments[0];
         }
 
         #endregion

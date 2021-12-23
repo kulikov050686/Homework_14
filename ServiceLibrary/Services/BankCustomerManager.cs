@@ -20,7 +20,7 @@ namespace ServiceLibrary
         #region Закрытые поля
 
         private readonly BankCustomerRepository _bankCustomerRepository;
-        private readonly BankDepartmentManager _bankDepartmentManager;
+        private readonly BankDepartmentRepository _bankDepartmentRepository;
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace ServiceLibrary
             if (bankDepartment is null)
                 throw new ArgumentNullException(nameof(bankDepartment), "Департамент не может быть null!!!");
 
-            var selectedDepartment = _bankDepartmentManager.Get(bankDepartment.Name);
+            var selectedDepartment = _bankDepartmentRepository.Get(bankDepartment.Name);
             if (selectedDepartment is null) return false;
 
             bankDepartment.BankCustomers.Add(bankCustomer);
@@ -80,7 +80,7 @@ namespace ServiceLibrary
             if (bankDepartment is null)
                 throw new ArgumentNullException(nameof(bankDepartment), "Департамент не может быть null!!!");
 
-            var selectedDepartment = _bankDepartmentManager.Get(bankDepartment.Name);
+            var selectedDepartment = _bankDepartmentRepository.Get(bankDepartment.Name);
             if (selectedDepartment is null) return false;
             
             if(bankDepartment.BankCustomers.Remove(bankCustomer) &&
@@ -105,10 +105,10 @@ namespace ServiceLibrary
         /// <param name="bankCustomerRepository"> Хранилище клиентов банка </param>
         /// <param name="bankDepartmentManager"> Хранилище департаментов банка </param>
         public BankCustomerManager(BankCustomerRepository bankCustomerRepository,
-                                   BankDepartmentManager bankDepartmentManager)
+                                   BankDepartmentRepository bankDepartmentRepository)
         {
             _bankCustomerRepository = bankCustomerRepository;
-            _bankDepartmentManager = bankDepartmentManager;
+            _bankDepartmentRepository = bankDepartmentRepository;
         }
     }
 }

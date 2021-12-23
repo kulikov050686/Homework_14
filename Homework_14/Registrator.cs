@@ -1,4 +1,6 @@
-﻿using Homework_14.Pages;
+﻿using DialogLibrary;
+using DialogWindowLibrary;
+using Homework_14.Pages;
 using Homework_14.Services;
 using Homework_14.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,9 +19,16 @@ namespace Homework_14
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddSingleton<BankDepartmentRepository>();
+            services.AddSingleton<BankCustomerRepository>();
+            services.AddSingleton<DepositoryAccountRepository>();
             services.AddSingleton<PageNavigator>();
 
+            services.AddTransient<BankDepartmentManager>();
+            services.AddTransient<BankCustomerManager>();
+            services.AddTransient<DepositoryAccountManager>();
+
             services.AddTransient<PageLocatorService>();
+
             return services;
         }
 
@@ -47,6 +56,16 @@ namespace Homework_14
             services.AddTransient<UsualBankDepartmentPage>();
             services.AddTransient<VipBankDepartmentPage>();
             services.AddTransient<JuridicalBankDepartmentPage>();
+
+            return services;
+        }
+
+        /// <summary>
+        /// Регистрация всех диалоговых окон
+        /// </summary>        
+        public static IServiceCollection RegisterDialogWindows(this IServiceCollection services)
+        {
+            services.AddTransient<BankCustomerDialog>();
 
             return services;
         }

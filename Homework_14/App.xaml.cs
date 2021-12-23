@@ -22,7 +22,7 @@ namespace Homework_14
             services.RegisterServices().RegisterViewModels();
             services.RegisterServices().RegisterServices();
             services.RegisterServices().RegisterPages();
-            //services.RegisterServices().RegisterDialogWindows();
+            services.RegisterServices().RegisterDialogWindows();
         }
 
         /// <summary>

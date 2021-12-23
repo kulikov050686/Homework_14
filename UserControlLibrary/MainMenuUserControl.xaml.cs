@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 namespace UserControlLibrary
-{    
+{
     public partial class MainMenuUserControl : UserControl
     {
         #region Родительское окно
