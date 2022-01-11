@@ -72,7 +72,7 @@ namespace DialogWindowLibrary
 
         #endregion
 
-        #region Комманда 
+        #region Комманда открыть диалог
 
         private ICommand _openCommand = default;
         public ICommand OpenCommand
