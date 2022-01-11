@@ -4,11 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Homework_14.Pages"
+      xmlns:dlg="clr-namespace:DialogLibrary;assembly=DialogLibrary"
       xmlns:converter="clr-namespace:ConverterLibrary;assembly=ConverterLibrary"
       mc:Ignorable="d" 
       d:DesignHeight="450" 
       d:DesignWidth="800"
       DataContext="{Binding UsualBankDepartmentPageVM, Source={StaticResource ViewModelLocator}}">
+
+    <Page.Resources>
+        <dlg:BankCustomerDialog x:Key="bankCustomerDialog" 
+                                СlientStatus="USUAL"
+                                BankCustomer="{Binding SelectedBankCustomer}"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -138,8 +145,9 @@
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Добавить клиента"
-                              Command="{Binding AddBankCustomerCommand}"/>
-                    <MenuItem Header="Редактировать данные клиента"/>
+                              Command="{Binding CreateBankCustomerCommand, Source={StaticResource bankCustomerDialog}}"/>
+                    <MenuItem Header="Редактировать данные клиента"
+                              Command="{Binding EditBankCustomerCommand, Source={StaticResource bankCustomerDialog}}"/>
                     <MenuItem Header="Удалить клиента"
                               Command="{Binding DeleteBankCustomerCommand}"/>
                 </ContextMenu>

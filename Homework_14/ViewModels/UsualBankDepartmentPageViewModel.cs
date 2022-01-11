@@ -1,6 +1,7 @@
 ﻿using BaseClassesLibrary;
 using CommandLibrary;
 using DialogLibrary;
+using EnumLibrary;
 using Homework_14.Services;
 using ModelLibrary;
 using ServiceLibrary;
@@ -26,6 +27,11 @@ namespace Homework_14.ViewModels
         private IBankCustomer _selectedBankCustomer;
 
         #endregion
+
+        /// <summary>
+        /// Статус
+        /// </summary>
+        public Status Status => _bankDepartment.StatusDepartment;
 
         /// <summary>
         /// Имя департамента
@@ -66,8 +72,8 @@ namespace Homework_14.ViewModels
         {
             get => _addBankCustomerCommand ??= new RelayCommand((obj) => 
             {
-                var bankCustomer = _bankCustomerDialog.Create(_bankDepartment.StatusDepartment);
-                if (bankCustomer is null) return;
+                //var bankCustomer = _bankCustomerDialog.Create(_bankDepartment.StatusDepartment);
+                //if (bankCustomer is null) return;
             });
         }
 

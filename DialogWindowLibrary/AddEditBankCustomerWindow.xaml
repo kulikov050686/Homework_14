@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DialogWindowLibrary"
         xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
+        xmlns:uc="clr-namespace:UserControlLibrary;assembly=UserControlLibrary"
         mc:Ignorable="d"
         Title="AddEditBankCustomerWindow" 
         Height="450" 
@@ -25,12 +26,16 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Button Content="Button" 
+
+            <uc:AddressUserControl/>
+
+
+            <!--<Button Content="Button" 
                     HorizontalAlignment="Left" 
                     Margin="478,156,0,0" 
                     VerticalAlignment="Top"
                     Width="100"
-                    Command="{Binding OpenCommand, Source={StaticResource openDialog}}"/>
+                    Command="{Binding OpenCommand, Source={StaticResource openDialog}}"/>-->
         </Grid>
 
         <StackPanel Grid.Row="1" 

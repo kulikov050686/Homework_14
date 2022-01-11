@@ -1,15 +1,18 @@
-﻿using DialogWindowLibrary;
+﻿using CommandLibrary;
+using DialogWindowLibrary;
 using EnumLibrary;
 using ModelLibrary;
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace DialogLibrary
 {
     /// <summary>
     /// Класс сервиса диалоговых окон по работе с клиентом банка
     /// </summary>
-    public class BankCustomerDialog : IDialogService<IBankCustomer>
+    public class BankCustomerDialog : Freezable
     {
         #region Закрытые поля
 
@@ -17,11 +20,79 @@ namespace DialogLibrary
 
         #endregion
 
+        #region Клиент банка
+
+        public static readonly DependencyProperty BankCustomerProperty =
+            DependencyProperty.Register(nameof(BankCustomer),
+                                        typeof(IBankCustomer),
+                                        typeof(BankCustomerDialog),
+                                        new PropertyMetadata(default(IBankCustomer)));
+
+        /// <summary>
+        /// Клиент банка
+        /// </summary>
+        [Description("Клиент банка")]
+        public IBankCustomer BankCustomer
+        {
+            get => (IBankCustomer)GetValue(BankCustomerProperty);
+            set => SetValue(BankCustomerProperty, value);
+        }
+
+        #endregion
+
+        #region Статус клиента банка
+
+        public static readonly DependencyProperty СlientStatusProperty =
+            DependencyProperty.Register(nameof(СlientStatus),
+                                        typeof(Status),
+                                        typeof(BankCustomerDialog),
+                                        new PropertyMetadata(default(Status)));
+
+        /// <summary>
+        /// Клиент банка
+        /// </summary>
+        [Description("Клиент банка")]
+        public Status СlientStatus
+        {
+            get => (Status)GetValue(СlientStatusProperty);
+            set => SetValue(СlientStatusProperty, value);
+        }
+
+        #endregion
+
+        #region Команда создать нового клиента банка
+
+        private ICommand _createBankCustomerCommand = default;
+        public ICommand CreateBankCustomerCommand
+        {
+            get => _createBankCustomerCommand ??= new RelayCommand((obj) =>
+            {
+                BankCustomer = Create(СlientStatus);
+            });
+        }
+
+        #endregion
+
+        #region Команда редактировать клиента банка
+
+        private ICommand _editBankCustomerCommand = default;
+        public ICommand EditBankCustomerCommand
+        {
+            get => _editBankCustomerCommand ??= new RelayCommand((obj) => 
+            {
+                BankCustomer = Edit(BankCustomer);
+            }, (obj) => BankCustomer != null);
+        }
+
+        #endregion
+
+        #region Закрытые методы
+
         /// <summary>
         /// Создание нового клиента банка
         /// </summary>
         /// <param name="clientStatus"> Статус клиента банка </param>        
-        public IBankCustomer Create(Status clientStatus)
+        private IBankCustomer Create(Status clientStatus)
         {
             _dialog = new AddEditBankCustomerWindow();
 
@@ -38,7 +109,7 @@ namespace DialogLibrary
         /// Редактировать данные клиента банка
         /// </summary>
         /// <param name="bankCustomer"> Клиент банка </param>        
-        public IBankCustomer Edit(IBankCustomer bankCustomer)
+        private IBankCustomer Edit(IBankCustomer bankCustomer)
         {
             if (bankCustomer is null)
                 throw new ArgumentNullException("Клиент банка не может быть null!!!");
@@ -54,8 +125,6 @@ namespace DialogLibrary
 
             return tempBankCustomer;
         }
-
-        #region Закрытые методы
 
         /// <summary>
         /// Создать клиента банка
@@ -295,14 +364,9 @@ namespace DialogLibrary
         }
 
         /// <summary>
-        /// Заглушка
-        /// </summary>        
-        IBankCustomer IDialogService<IBankCustomer>.Create() => null;
-
-        /// <summary>
-        /// Заглушка
-        /// </summary>    
-        IBankCustomer IDialogService<IBankCustomer>.Selected(IList<IBankCustomer> entities) => null;
+        /// Возвращает новый класс реализации
+        /// </summary>
+        protected override Freezable CreateInstanceCore() => new BankCustomerDialog();
 
         #endregion
     }

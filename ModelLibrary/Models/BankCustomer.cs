@@ -19,7 +19,7 @@ namespace ModelLibrary
         private Status _clientStatus = Status.USUAL;
         private Reliability _reliability = Reliability.FIRST;
         private string _phoneNumber = null;
-        private string _email = null;        
+        private string _email = null;
         private IList<IDepositoryAccount> _depositoryAccounts = null;
         
         #endregion
