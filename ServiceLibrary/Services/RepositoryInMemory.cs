@@ -47,7 +47,7 @@ namespace ServiceLibrary
         /// <param name="item"> Добавляемый элемент </param>
         public void Add(T item)
         {
-            if (item is null) 
+            if (item is null)
                 throw new ArgumentNullException(nameof(item));
             if (_items.Contains(item)) return;
 
@@ -102,14 +102,14 @@ namespace ServiceLibrary
         /// <param name="item"> Новые данные </param>
         public void Update(T item)
         {
-            if (item is null) 
-                throw new ArgumentNullException(nameof(item));            
-            if (_items.Contains(item)) 
+            if (item is null)
+                throw new ArgumentNullException(nameof(item));
+            if (_items.Contains(item))
                 return;
 
             var db_item = ((IRepository<T>)this).Get(item.Id);
 
-            if (db_item is null) 
+            if (db_item is null)
                 throw new InvalidOperationException("Редактируемый элемент не найден в репозитории");
 
             Update(item, db_item);

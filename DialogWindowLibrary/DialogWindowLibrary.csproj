@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommandLibrary\CommandLibrary.csproj" />
+    <ProjectReference Include="..\ConvertersLibrary\ConverterLibrary.csproj" />
     <ProjectReference Include="..\EnumLibrary\EnumLibrary.csproj" />
   </ItemGroup>
 

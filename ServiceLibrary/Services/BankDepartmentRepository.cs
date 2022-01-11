@@ -18,11 +18,8 @@ namespace ServiceLibrary
         /// Поиск департамента по имени
         /// </summary>
         /// <param name="nameDepartment"> Имя департамента </param>
-        public IBankDepartment Get(string nameDepartment)
-        {
-            return GetAll().FirstOrDefault(d => d.Name == nameDepartment);
-        }
-
+        public IBankDepartment Get(string nameDepartment) => GetAll().FirstOrDefault(d => d.Name == nameDepartment);
+        
         /// <summary>
         /// Обновление данных департамента банка
         /// </summary>

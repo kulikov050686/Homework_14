@@ -24,9 +24,14 @@ namespace DialogLibrary
         public IBankCustomer Create(Status clientStatus)
         {
             _dialog = new AddEditBankCustomerWindow();
+
             if (_dialog.ShowDialog() != true) return null;
 
-            return CreateBankCustomer(clientStatus);
+            var str = _dialog.PathToFileImage;
+
+            return null;
+
+            //return CreateBankCustomer(clientStatus);
         }
 
         /// <summary>

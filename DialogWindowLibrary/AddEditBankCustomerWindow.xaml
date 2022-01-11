@@ -4,13 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DialogWindowLibrary"
+        xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
         mc:Ignorable="d"
         Title="AddEditBankCustomerWindow" 
         Height="450" 
         Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-    
+
+    <Window.Resources>
+        <local:OpenDialog x:Key="openDialog"
+                          Title="Открыть файл"
+                          Filter="files (*.json)|*.json"
+                          PathToFile="{Binding PathToFileImage, Mode=TwoWay}"/>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Button Content="Button" 
+                    HorizontalAlignment="Left" 
+                    Margin="478,156,0,0" 
+                    VerticalAlignment="Top"
+                    Width="100"
+                    Command="{Binding OpenCommand, Source={StaticResource openDialog}}"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="5">
+            
+            <!--Кнопка применить-->
+            <Button Content="Применить"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:AddEditBankCustomerWindow}}">
+                <Button.Command>
+                    <cmd:CloseDialogCommand DialogResult="True"/>
+                </Button.Command>
+            </Button>
+
+            <!--Кнопка отменить-->
+            <Button Content="Отмена"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:AddEditBankCustomerWindow}}">
+                <Button.Command>
+                    <cmd:CloseDialogCommand DialogResult="False"/>
+                </Button.Command>
+            </Button>
+            
+        </StackPanel>
     </Grid>
 </Window>

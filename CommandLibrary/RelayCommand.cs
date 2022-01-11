@@ -8,8 +8,8 @@ namespace CommandLibrary
     /// </summary>
     public class RelayCommand : BaseCommand
     {
-        private Action<object> _execute;
-        private Func<object, bool> _canExecute;
+        private readonly Action<object> _execute;
+        private readonly Func<object, bool> _canExecute;
         
         /// <summary>
         /// Конструктор команды
@@ -18,7 +18,7 @@ namespace CommandLibrary
         /// <param name="canExecute"> Метод разрешающий выполнение команды </param>
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
 

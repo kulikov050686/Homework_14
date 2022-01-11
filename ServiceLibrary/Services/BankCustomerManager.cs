@@ -40,6 +40,9 @@ namespace ServiceLibrary
         /// <param name="bankCustomer"> Клиент банка </param>
         public void Update(IBankCustomer bankCustomer)
         {
+            if (bankCustomer is null)
+                throw new ArgumentNullException(nameof(bankCustomer), "Обновляемый клиент банка не может быть null!!!");
+
             _bankCustomerRepository.Update(bankCustomer);
             ManagerEvent?.Invoke(bankCustomer, ManagerArgs.UPDATE);
         }
@@ -103,7 +106,7 @@ namespace ServiceLibrary
         /// Конструктор
         /// </summary>
         /// <param name="bankCustomerRepository"> Хранилище клиентов банка </param>
-        /// <param name="bankDepartmentManager"> Хранилище департаментов банка </param>
+        /// <param name="bankDepartmentRepository"> Хранилище департаментов банка </param>
         public BankCustomerManager(BankCustomerRepository bankCustomerRepository,
                                    BankDepartmentRepository bankDepartmentRepository)
         {

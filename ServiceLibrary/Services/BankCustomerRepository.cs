@@ -25,7 +25,7 @@ namespace ServiceLibrary
             destination.Passport = source.Passport;
             destination.PhoneNumber = source.PhoneNumber;
             destination.Reliability = source.Reliability;
-            destination.ClientStatus = source.ClientStatus;            
+            destination.ClientStatus = source.ClientStatus;
             destination.Email = source.Email;
             destination.DepositoryAccounts = source.DepositoryAccounts;
         }

@@ -627,6 +627,26 @@ namespace DialogWindowLibrary
 
         #endregion
 
+        #region Путь к файлу изображения
+
+        public static readonly DependencyProperty PathToFileImageProperty =
+           DependencyProperty.Register(nameof(PathToFileImage),
+                                       typeof(string),
+                                       typeof(AddEditBankCustomerWindow),
+                                       new PropertyMetadata(default(string)));
+
+        /// <summary>
+        /// Путь к файлу изображения
+        /// </summary>
+        [Description("Путь к файлу изображения")]
+        public string PathToFileImage
+        {
+            get => (string)GetValue(PathToFileImageProperty);
+            set => SetValue(PathToFileImageProperty, value);
+        }
+        
+        #endregion
+
         public AddEditBankCustomerWindow() => InitializeComponent();        
     }
 }
