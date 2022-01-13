@@ -13,6 +13,8 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <Window.Resources>
+        
+        <!--Диалоговое окно открытия файла-->
         <local:OpenDialog x:Key="openDialog"
                           Title="Открыть файл"
                           Filter="files (*.jpg)|*.jpg"
@@ -40,53 +42,87 @@
                     <ColumnDefinition Width="121*"/>
                 </Grid.ColumnDefinitions>
 
-                <uc:TERUserControl Grid.Row="0"
-                                   Width="{Binding Width}"
+                <!--Телефон Электронный адрес Рейтинг клиента-->
+                <uc:TERUserControl Grid.Row="0"                                   
                                    Grid.ColumnSpan="4"
                                    HorizontalAlignment="Left" 
-                                   Margin="0,2,0,2"/>
+                                   Margin="0,2,0,2"
+                                   PhoneNumberUC="{Binding PhoneNumber, Mode=TwoWay}"
+                                   EmailUC="{Binding Email, Mode=TwoWay}"
+                                   ReliabilityUC="{Binding Reliability, Mode=TwoWay}"/>
 
+                <!--Фотография клиента-->
                 <uc:PhotoUserControl Grid.Row="1"
-                                     Grid.Column="0"                                     
+                                     Grid.Column="0"                                 
+                                     Padding="3"
+                                     VerticalAlignment="Top"
                                      TitleUC="Фото"
-                                     FontSize="12"                                     
-                                     VerticalAlignment="Top"                                                                        
-                                     OpenFileCommandUC="{Binding OpenCommand, Source={StaticResource openDialog}}"
-                                     PathToImageFileUC="{Binding PathToFileImage, Mode=TwoWay}"
                                      TextOnButtonUC="Обзор..."
-                                     Padding="3"/>
+                                     OpenFileCommandUC="{Binding OpenCommand, Source={StaticResource openDialog}}"
+                                     PathToImageFileUC="{Binding PathToFileImage, Mode=TwoWay}"/>
 
+                <!--Данные клиента-->
                 <StackPanel Orientation="Vertical"
                             Grid.Row="1"
                             Grid.Column="1">
 
-                    <uc:PassportUserControl TitleUC="Паспорт"
-                                            VerticalAlignment="Top"
+                    <!--Паспортные данные клиента-->
+                    <uc:PassportUserControl VerticalAlignment="Top"
                                             HorizontalAlignment="Left"
-                                            Padding="3"/>
+                                            Padding="3"
+                                            TitleUC="Паспорт"
+                                            SeriesUC="{Binding SeriesPassport, Mode=TwoWay}"
+                                            NumberUC="{Binding NumberPassport, Mode=TwoWay}"
+                                            DateOfIssueUC="{Binding DateOfIssuePassport, Mode=TwoWay}"
+                                            DivisionCodeLeftUC="{Binding DivisionCodeLeftPassport, Mode=TwoWay}"
+                                            DivisionCodeRightUC="{Binding DivisionCodeRightPassport, Mode=TwoWay}"
+                                            PlaceOfIssueUC="{Binding PlaceOfIssuePassport, Mode=TwoWay}"/>
 
-                    <uc:PersonUserControl TitleUC="Данные клиента"
-                                          VerticalAlignment="Top"
+                    <!--Данные клиента-->
+                    <uc:PersonUserControl VerticalAlignment="Top"
                                           HorizontalAlignment="Left"
-                                          Padding="3"/>
+                                          Padding="3"
+                                          TitleUC="Данные клиента"
+                                          NameUC="{Binding NameBankCustomer, Mode=TwoWay}"
+                                          SurnameUC="{Binding SurnameBankCustomer, Mode=TwoWay}"
+                                          PatronymicUC="{Binding PatronymicBankCustomer, Mode=TwoWay}"
+                                          DateOfBirthrUC="{Binding BirthdayBankCustomer, Mode=TwoWay}"
+                                          GenderUC="{Binding GenderBankCustomer, Mode=TwoWay}"
+                                          PlaceOfBirthUC="{Binding PlaceOfBirthBankCustomer, Mode=TwoWay}"/>
 
-                </StackPanel>
+                </StackPanel>              
 
-                
-
+                <!--Адрес прописки-->
                 <uc:AddressUserControl Grid.Row="1"
                                        Grid.Column="2"
                                        Padding="3"
                                        VerticalAlignment="Top"
                                        HorizontalAlignment="Left"
-                                       TitleUC="Адрес прописки"/>
+                                       TitleUC="Адрес прописки"
+                                       RegionUC="{Binding RegionPlaceOfResidence, Mode=TwoWay}"
+                                       CityUC="{Binding CityPlaceOfResidence, Mode=TwoWay}"
+                                       DistrictUC="{Binding DistrictPlaceOfResidence, Mode=TwoWay}"
+                                       StreetUC="{Binding StreetPlaceOfResidence, Mode=TwoWay}"
+                                       HouseNumberUC="{Binding HouseNumberPlaceOfResidence, Mode=TwoWay}"
+                                       HousingUC="{Binding HousingPlaceOfResidence, Mode=TwoWay}"
+                                       ApartmentNumberUC="{Binding ApartmentNumberPlaceOfResidence, Mode=TwoWay}"
+                                       RegistrationDateUC="{Binding RegistrationDatePlaceOfResidence, Mode=TwoWay}"/>
 
+                <!--Адрес регистрации-->
                 <uc:AddressUserControl Grid.Row="1"
                                        Grid.Column="3"
                                        Padding="3"
                                        VerticalAlignment="Top"
                                        HorizontalAlignment="Left"
-                                       TitleUC="Адрес ргистрации"/>
+                                       TitleUC="Адрес ргистрации"
+                                       RegionUC="{Binding RegionRegistration, Mode=TwoWay}"
+                                       CityUC="{Binding CityRegistration, Mode=TwoWay}"
+                                       DistrictUC="{Binding DistrictRegistration, Mode=TwoWay}"
+                                       StreetUC="{Binding StreetRegistration, Mode=TwoWay}"
+                                       HouseNumberUC="{Binding HouseNumberRegistration, Mode=TwoWay}"
+                                       HousingUC="{Binding HousingRegistration, Mode=TwoWay}"
+                                       ApartmentNumberUC="{Binding ApartmentNumberRegistration, Mode=TwoWay}"
+                                       RegistrationDateUC="{Binding RegistrationDateRegistration, Mode=TwoWay}"/>
 
             </Grid>
         </Grid>

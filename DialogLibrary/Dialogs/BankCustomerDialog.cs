@@ -95,6 +95,7 @@ namespace DialogLibrary
         private IBankCustomer Create(Status clientStatus)
         {
             _dialog = new AddEditBankCustomerWindow();
+            _dialog.Title = "Добавить нового клиента";
 
             if (_dialog.ShowDialog() != true) return null;
 
@@ -113,7 +114,9 @@ namespace DialogLibrary
         {
             if (bankCustomer is null)
                 throw new ArgumentNullException("Клиент банка не может быть null!!!");
+
             _dialog = new AddEditBankCustomerWindow();
+            _dialog.Title = "Редактировать данные клиента";
 
             FillInWindows(bankCustomer);
 
