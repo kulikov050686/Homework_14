@@ -6,43 +6,12 @@
              xmlns:local="clr-namespace:UserControlLibrary"
              xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
              mc:Ignorable="d" 
-             Height="20" 
-             Width="50">
+             Height="23" 
+             Width="45">
 
-    <UserControl.Resources>
-        
-        <!---->
-        <Style TargetType="Menu" x:Key="mainMenu">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
-        <!---->
-        <Style x:Key="mainMenuItemStyle" TargetType="{x:Type MenuItem}">
-            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>                        
-        </Style>
-        
-    </UserControl.Resources>
-        
-    <Viewbox Stretch="Fill">
-        <Menu Style="{StaticResource mainMenu}">
-            <MenuItem Style="{StaticResource mainMenuItemStyle}" 
-                      Header="Файл">
+    <Viewbox Stretch="None">
+        <Menu>
+            <MenuItem Header="Файл" Height="23" Width="48">
                 <MenuItem Header="Сохранить"/>
                 <MenuItem Header="Открыть"/>
                 <MenuItem Header="Выход"
@@ -50,8 +19,8 @@
                     <MenuItem.Command>
                         <cmd:CloseWindowCommand/>
                     </MenuItem.Command>
-                </MenuItem>                
-            </MenuItem>            
+                </MenuItem>
+            </MenuItem>
         </Menu>
     </Viewbox>
 </UserControl>

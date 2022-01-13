@@ -4,65 +4,51 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UserControlLibrary"
-             mc:Ignorable="d"
-             Width="176"
-             Height="162">
-    
-    <Viewbox Stretch="Fill">
-        <GroupBox Header="{Binding TitleUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"
-                  FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}">
-            <Grid>
+             mc:Ignorable="d"             
+             Height="210">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+    <GroupBox Header="{Binding TitleUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"
+              FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}">
+        <StackPanel>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <!--Серия и номер паспорта-->
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
 
-                <!--Серия и номер паспорта-->
-                <StackPanel Grid.Row="0"
-                            Grid.Column="0" 
-                            Orientation="Horizontal"
-                            Margin="5">
+                <!--Серия паспорта-->
+                <GroupBox Header="Серия"
+                          FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}">
 
-                    <!-- Серия паспорта -->
-                    <GroupBox Header="Серия"
-                              FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}">
-                        <TextBox Text="{Binding SeriesUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}, Mode=TwoWay}" 
-                                 FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"/>
-                    </GroupBox>
+                    <TextBox Text="{Binding SeriesUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}, Mode=TwoWay}" 
+                             FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"/>
+                </GroupBox>
 
-                    <!-- Номер паспорта -->
-                    <GroupBox Header="Номер"
-                              FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"
-                              Margin="25 0 0 0">
-                        <TextBox Text="{Binding NumberUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}, Mode=TwoWay}" 
-                                 FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"/>
-                    </GroupBox>
+                <!--Номер паспорта-->
+                <GroupBox Header="Номер"
+                          FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"
+                          Margin="5 0 0 0">
 
-                </StackPanel>
+                    <TextBox Text="{Binding NumberUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}, Mode=TwoWay}" 
+                             FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"/>
+                </GroupBox>
+            </StackPanel>
 
-                <!-- Дата выдачи паспорта -->
-                <GroupBox Grid.Row="1"
-                          Grid.Column="0"
-                          Header="Дата выдачи"
+            <StackPanel Orientation="Horizontal">
+                
+                <!--Дата выдачи паспорта-->
+                <GroupBox Header="Дата выдачи"
                           Margin="5">
+
                     <DatePicker FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"
                                 SelectedDate="{Binding DateOfIssueUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}, Mode=TwoWay}"/>
                 </GroupBox>
 
-                <!-- Код подразделения выдавший паспорт -->
-                <StackPanel Grid.Row="1" 
-                            Grid.Column="1" 
-                            Margin="5">
+                <!--Код подразделения выдавший паспорт-->
+                <StackPanel Margin="5">
 
                     <GroupBox Header="Код подразделения"
                               FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}">
+
                         <StackPanel Orientation="Horizontal" 
                                     HorizontalAlignment="Center">
 
@@ -83,19 +69,17 @@
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
+            </StackPanel>
 
-                <!-- Место выдачи паспорта -->
-                <GroupBox Grid.Row="2" 
-                          Grid.ColumnSpan="2" 
-                          Header="Место выдачи"
-                          FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"
-                          Margin="5">
+            <!--Место выдачи паспорта-->
+            <GroupBox Header="Место выдачи"
+                      FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"
+                      Margin="5">
 
-                    <TextBox Text="{Binding PlaceOfIssueUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}, Mode=TwoWay}"
-                             TextWrapping="Wrap"                         
-                             FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"/>
-                </GroupBox>
-            </Grid>
-        </GroupBox>
-    </Viewbox>
+                <TextBox Text="{Binding PlaceOfIssueUC, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}, Mode=TwoWay}"
+                         TextWrapping="Wrap"                         
+                         FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PassportUserControl}}"/>
+            </GroupBox>
+        </StackPanel>
+    </GroupBox>
 </UserControl>

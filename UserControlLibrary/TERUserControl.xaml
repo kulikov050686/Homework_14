@@ -5,43 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UserControlLibrary"
              xmlns:converter="clr-namespace:ConverterLibrary;assembly=ConverterLibrary"
-             mc:Ignorable="d"
-             Width="180"
-             Height="30">
+             mc:Ignorable="d"             
+             Height="55">
 
-    <Viewbox Stretch="Fill">
-        <Grid>
+    <StackPanel Orientation="Horizontal">
+        
+        <!--Телефон-->
+        <GroupBox Header="Телефон"
+                  FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
+                  Margin="5">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="150"/>
-            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding PhoneNumberUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}, Mode=TwoWay}"
+                     FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"/>
+        </GroupBox>
+        
+        <!--Электронный адрес-->
+        <GroupBox Header="Электронный адрес"
+                  FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
+                  Margin="5">
 
-            <GroupBox Grid.Column="0"  
-                      Header="Телефон"
-                      FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
-                      Margin="5">
-                <TextBox Text="{Binding PhoneNumberUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}, Mode=TwoWay}"
-                         FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"/>
-            </GroupBox>
+            <TextBox Text="{Binding EmailUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}, Mode=TwoWay}"
+                     FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"/>
+        </GroupBox>
+        
+        <!--Рейтинг-->
+        <GroupBox Header="Рейтинг"
+                  FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
+                  Margin="5">
 
-            <GroupBox Grid.Column="1" 
-                      Header="Электронный адрес"
-                      FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
-                      Margin="5">
-                <TextBox Text="{Binding EmailUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}, Mode=TwoWay}"
-                         FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"/>
-            </GroupBox>
-
-            <GroupBox Grid.Column="2"  
-                      Header="Рейтинг"
-                      FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
-                      Margin="5">
-                <ComboBox ItemsSource="{Binding ReliabilityListUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
-                          SelectedIndex="{Binding ReliabilityUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}, Converter={converter:IntToReliabilityConverter}, Mode=TwoWay}"
-                          FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"/>
-            </GroupBox>
-        </Grid>
-    </Viewbox>
+            <ComboBox ItemsSource="{Binding ReliabilityListUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"
+                      SelectedIndex="{Binding ReliabilityUC, RelativeSource={RelativeSource AncestorType=local:TERUserControl}, Converter={converter:IntToReliabilityConverter}, Mode=TwoWay}"
+                      FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:TERUserControl}}"/>
+        </GroupBox>
+    </StackPanel>
 </UserControl>
