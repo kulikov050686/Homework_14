@@ -52,7 +52,7 @@
                       Margin="5">
                 
                 <TextBox Text="{Binding HouseNumberUC, RelativeSource={RelativeSource AncestorType=local:AddressUserControl}, Mode=TwoWay}" 
-                         FontSize="16"/>
+                         FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:AddressUserControl}}"/>
             </GroupBox>
 
             <!--Корпус-->

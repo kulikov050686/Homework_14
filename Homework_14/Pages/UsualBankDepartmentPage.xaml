@@ -11,12 +11,6 @@
       d:DesignWidth="800"
       DataContext="{Binding UsualBankDepartmentPageVM, Source={StaticResource ViewModelLocator}}">
 
-    <Page.Resources>
-        <dlg:BankCustomerDialog x:Key="bankCustomerDialog" 
-                                СlientStatus="USUAL"
-                                BankCustomer="{Binding SelectedBankCustomer}"/>
-    </Page.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -145,11 +139,15 @@
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Добавить клиента"
-                              Command="{Binding CreateBankCustomerCommand, Source={StaticResource bankCustomerDialog}}"/>
+                              Command="{Binding AddBankCustomerCommand}"/>
+
                     <MenuItem Header="Редактировать данные клиента"
-                              Command="{Binding EditBankCustomerCommand, Source={StaticResource bankCustomerDialog}}"/>
+                              Command="{Binding EditBankCustomerCommand}"
+                              CommandParameter="{Binding SelectedBankCustomer}"/>
+
                     <MenuItem Header="Удалить клиента"
-                              Command="{Binding DeleteBankCustomerCommand}"/>
+                              Command="{Binding DeleteBankCustomerCommand}"
+                              CommandParameter="{Binding SelectedBankCustomer}"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>  

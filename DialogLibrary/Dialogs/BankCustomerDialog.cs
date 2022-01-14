@@ -1,18 +1,14 @@
-﻿using CommandLibrary;
-using DialogWindowLibrary;
+﻿using DialogWindowLibrary;
 using EnumLibrary;
 using ModelLibrary;
 using System;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
 
 namespace DialogLibrary
 {
     /// <summary>
     /// Класс сервиса диалоговых окон по работе с клиентом банка
     /// </summary>
-    public class BankCustomerDialog : Freezable
+    public class BankCustomerDialog
     {
         #region Закрытые поля
 
@@ -20,97 +16,25 @@ namespace DialogLibrary
 
         #endregion
 
-        #region Клиент банка
-
-        public static readonly DependencyProperty BankCustomerProperty =
-            DependencyProperty.Register(nameof(BankCustomer),
-                                        typeof(IBankCustomer),
-                                        typeof(BankCustomerDialog),
-                                        new PropertyMetadata(default(IBankCustomer)));
-
-        /// <summary>
-        /// Клиент банка
-        /// </summary>
-        [Description("Клиент банка")]
-        public IBankCustomer BankCustomer
-        {
-            get => (IBankCustomer)GetValue(BankCustomerProperty);
-            set => SetValue(BankCustomerProperty, value);
-        }
-
-        #endregion
-
-        #region Статус клиента банка
-
-        public static readonly DependencyProperty СlientStatusProperty =
-            DependencyProperty.Register(nameof(СlientStatus),
-                                        typeof(Status),
-                                        typeof(BankCustomerDialog),
-                                        new PropertyMetadata(default(Status)));
-
-        /// <summary>
-        /// Клиент банка
-        /// </summary>
-        [Description("Клиент банка")]
-        public Status СlientStatus
-        {
-            get => (Status)GetValue(СlientStatusProperty);
-            set => SetValue(СlientStatusProperty, value);
-        }
-
-        #endregion
-
-        #region Команда создать нового клиента банка
-
-        private ICommand _createBankCustomerCommand = default;
-        public ICommand CreateBankCustomerCommand
-        {
-            get => _createBankCustomerCommand ??= new RelayCommand((obj) =>
-            {
-                BankCustomer = Create(СlientStatus);
-            });
-        }
-
-        #endregion
-
-        #region Команда редактировать клиента банка
-
-        private ICommand _editBankCustomerCommand = default;
-        public ICommand EditBankCustomerCommand
-        {
-            get => _editBankCustomerCommand ??= new RelayCommand((obj) => 
-            {
-                BankCustomer = Edit(BankCustomer);
-            }, (obj) => BankCustomer != null);
-        }
-
-        #endregion
-
-        #region Закрытые методы
-
         /// <summary>
         /// Создание нового клиента банка
         /// </summary>
         /// <param name="clientStatus"> Статус клиента банка </param>        
-        private IBankCustomer Create(Status clientStatus)
+        public IBankCustomer Create(Status clientStatus)
         {
             _dialog = new AddEditBankCustomerWindow();
             _dialog.Title = "Добавить нового клиента";
 
             if (_dialog.ShowDialog() != true) return null;
 
-            var str = _dialog.PathToFileImage;
-
-            return null;
-
-            //return CreateBankCustomer(clientStatus);
+            return CreateBankCustomer(clientStatus);
         }
 
         /// <summary>
         /// Редактировать данные клиента банка
         /// </summary>
         /// <param name="bankCustomer"> Клиент банка </param>        
-        private IBankCustomer Edit(IBankCustomer bankCustomer)
+        public IBankCustomer Edit(IBankCustomer bankCustomer)
         {
             if (bankCustomer is null)
                 throw new ArgumentNullException("Клиент банка не может быть null!!!");
@@ -128,6 +52,8 @@ namespace DialogLibrary
 
             return tempBankCustomer;
         }
+
+        #region Закрытые методы
 
         /// <summary>
         /// Создать клиента банка
@@ -365,11 +291,6 @@ namespace DialogLibrary
                 return null;
             }
         }
-
-        /// <summary>
-        /// Возвращает новый класс реализации
-        /// </summary>
-        protected override Freezable CreateInstanceCore() => new BankCustomerDialog();
 
         #endregion
     }

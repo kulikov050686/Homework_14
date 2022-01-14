@@ -8,7 +8,7 @@ using System.Windows.Input;
 namespace DialogWindowLibrary
 {
     /// <summary>
-    /// 
+    /// Класс диалогового окна сохранения или открытия файла
     /// </summary>
     public class OpenDialog : Freezable
     {

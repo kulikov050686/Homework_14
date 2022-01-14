@@ -41,7 +41,7 @@ namespace Homework_14.ViewModels
         /// <summary>
         /// Список всех клиентов банка
         /// </summary>
-        public IList<IBankCustomer> BankCustomers => _bankDepartment.BankCustomers;
+        public IEnumerable<IBankCustomer> BankCustomers => _bankDepartment.BankCustomers;
 
         /// <summary>
         /// Выбранный клиент
@@ -72,9 +72,27 @@ namespace Homework_14.ViewModels
         {
             get => _addBankCustomerCommand ??= new RelayCommand((obj) => 
             {
-                //var bankCustomer = _bankCustomerDialog.Create(_bankDepartment.StatusDepartment);
-                //if (bankCustomer is null) return;
+                var bankCustomer = _bankCustomerDialog.Create(_bankDepartment.StatusDepartment);
+                if (bankCustomer is null) return;
+
+                _bankCustomerManager.Create(bankCustomer, _bankDepartment);
             });
+        }
+
+        #endregion
+
+        #region Команда редактированть клиента банка
+
+        private ICommand _editBankCustomerCommand = default;
+        public ICommand EditBankCustomerCommand
+        {
+            get => _editBankCustomerCommand ??= new RelayCommand((obj) =>
+            {
+                var bankCustomer = _bankCustomerDialog.Edit(SelectedBankCustomer);
+                if (bankCustomer is null) return;
+
+                _bankCustomerManager.Update(bankCustomer);
+            }, (obj) => SelectedBankCustomer != null);
         }
 
         #endregion
