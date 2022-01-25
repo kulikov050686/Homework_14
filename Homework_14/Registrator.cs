@@ -1,5 +1,4 @@
 ﻿using DialogLibrary;
-using DialogWindowLibrary;
 using Homework_14.Pages;
 using Homework_14.Services;
 using Homework_14.ViewModels;
@@ -66,6 +65,9 @@ namespace Homework_14
         public static IServiceCollection RegisterDialogWindows(this IServiceCollection services)
         {
             services.AddTransient<BankCustomerDialog>();
+            services.AddTransient<DepositoryAccountDialog>();
+
+            services.AddTransient<DialogLocatorService>();
 
             return services;
         }

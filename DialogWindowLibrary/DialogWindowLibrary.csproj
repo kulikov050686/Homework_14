@@ -9,6 +9,7 @@
     <ProjectReference Include="..\CommandLibrary\CommandLibrary.csproj" />
     <ProjectReference Include="..\ConvertersLibrary\ConverterLibrary.csproj" />
     <ProjectReference Include="..\EnumLibrary\EnumLibrary.csproj" />
+    <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj" />
     <ProjectReference Include="..\UserControlLibrary\UserControlLibrary.csproj" />
   </ItemGroup>
 

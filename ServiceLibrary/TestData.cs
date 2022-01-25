@@ -78,7 +78,7 @@ namespace TestDataProject
                 }
             }
             
-            return departments.SelectMany(d => d.BankCustomers).ToList();            
+            return departments.SelectMany(d => d.BankCustomers).ToList();
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace TestDataProject
                 }
             }
                         
-            return bankCustomers.SelectMany(d => d.DepositoryAccounts).ToList();                       
+            return bankCustomers.SelectMany(d => d.DepositoryAccounts).ToList();
         }
 
         /// <summary>

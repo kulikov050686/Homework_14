@@ -32,7 +32,7 @@ namespace ServiceLibrary
         /// <summary>
         /// Получить список всех клиентов
         /// </summary>
-        public IList<IBankCustomer> BankCustomers => _bankCustomerRepository.GetAll();
+        public IEnumerable<IBankCustomer> BankCustomers => _bankCustomerRepository.GetAll();
 
         /// <summary>
         /// Обновление данных клиента банка и сохранение в репозитории

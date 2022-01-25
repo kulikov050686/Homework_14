@@ -54,6 +54,6 @@ namespace ServiceLibrary
         /// Задать список сущностей в репозитории
         /// </summary>
         /// <param name="items"> Список сущностей  </param>
-        void SetAll(IList<T> items);
+        void SetAll(IEnumerable<T> items);
     }
 }

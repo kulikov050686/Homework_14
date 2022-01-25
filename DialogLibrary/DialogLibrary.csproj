@@ -6,8 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DialogWindowLibrary\DialogWindowLibrary.csproj" />
     <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj" />
+    <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj" />
+    <ProjectReference Include="..\UserControlLibrary\UserControlLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Windows\AddEditBankCustomerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\DepositoryAccountWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Windows\AddEditBankCustomerWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\DepositoryAccountWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,5 @@
 ﻿using BaseClassesLibrary;
 using CommandLibrary;
-using DialogLibrary;
-using EnumLibrary;
 using Homework_14.Services;
 using ModelLibrary;
 using ServiceLibrary;
@@ -20,18 +18,13 @@ namespace Homework_14.ViewModels
         private BankDepartmentManager _bankDepartmentManager;
         private PageLocatorService _pageLocatorService;
         private PageNavigator _pageNavigator;
-        private BankCustomerDialog _bankCustomerDialog;
+        private DialogLocatorService _dialogLocatorService;
         private BankCustomerManager _bankCustomerManager;
 
         private IBankDepartment _bankDepartment;
         private IBankCustomer _selectedBankCustomer;
 
         #endregion
-
-        /// <summary>
-        /// Статус
-        /// </summary>
-        public Status Status => _bankDepartment.StatusDepartment;
 
         /// <summary>
         /// Имя департамента
@@ -72,7 +65,7 @@ namespace Homework_14.ViewModels
         {
             get => _addBankCustomerCommand ??= new RelayCommand((obj) => 
             {
-                var bankCustomer = _bankCustomerDialog.Create(_bankDepartment.StatusDepartment);
+                var bankCustomer = _dialogLocatorService.BankCustomerDialog.Create(_bankDepartment.StatusDepartment);
                 if (bankCustomer is null) return;
 
                 _bankCustomerManager.Create(bankCustomer, _bankDepartment);
@@ -88,7 +81,7 @@ namespace Homework_14.ViewModels
         {
             get => _editBankCustomerCommand ??= new RelayCommand((obj) =>
             {
-                var bankCustomer = _bankCustomerDialog.Edit(SelectedBankCustomer);
+                var bankCustomer = _dialogLocatorService.BankCustomerDialog.Edit(SelectedBankCustomer);
                 if (bankCustomer is null) return;
 
                 _bankCustomerManager.Update(bankCustomer);
@@ -110,18 +103,32 @@ namespace Homework_14.ViewModels
 
         #endregion
 
+        #region Команда депозитарные счета
+
+        private ICommand _depositoryAccountsCommand = default;
+        public ICommand DepositoryAccountsCommand
+        {
+            get => _depositoryAccountsCommand ??= new RelayCommand((obj) =>
+            {
+                _dialogLocatorService.DepositoryAccountDialog.OpenDialog(SelectedBankCustomer);
+            }, (obj) => SelectedBankCustomer != null);
+        }
+
+
+        #endregion
+
         #region Конструктор
 
         public UsualBankDepartmentPageViewModel(BankDepartmentManager bankDepartmentManager,
                                                 PageLocatorService pageLocatorService,
                                                 PageNavigator pageNavigator,
-                                                BankCustomerDialog bankCustomerDialog,
+                                                DialogLocatorService dialogLocatorService,
                                                 BankCustomerManager bankCustomerManager)
         {
             _bankDepartmentManager = bankDepartmentManager;
             _pageLocatorService = pageLocatorService;
             _pageNavigator = pageNavigator;
-            _bankCustomerDialog = bankCustomerDialog;
+            _dialogLocatorService = dialogLocatorService;
             _bankCustomerManager = bankCustomerManager;
 
             _bankDepartment = _bankDepartmentManager.Departments[0];

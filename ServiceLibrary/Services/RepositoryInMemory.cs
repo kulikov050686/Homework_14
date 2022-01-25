@@ -36,7 +36,7 @@ namespace ServiceLibrary
         /// Конструктор
         /// </summary>
         /// <param name="items"> Список элементов </param>
-        protected RepositoryInMemory(IList<T> items)
+        protected RepositoryInMemory(IEnumerable<T> items)
         {
             foreach (var item in items) Add(item);
         }
@@ -71,7 +71,7 @@ namespace ServiceLibrary
         /// Задать список сущностей в репозитории
         /// </summary>
         /// <param name="items"> Список сущностей  </param>
-        public void SetAll(IList<T> items)
+        public void SetAll(IEnumerable<T> items)
         {
             if (items is null)
                 throw new ArgumentNullException(nameof(items));
