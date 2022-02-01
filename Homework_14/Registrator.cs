@@ -1,4 +1,5 @@
 ﻿using DialogLibrary;
+using FileIOLibrary;
 using Homework_14.Pages;
 using Homework_14.Services;
 using Homework_14.ViewModels;
@@ -29,6 +30,8 @@ namespace Homework_14
             services.AddTransient<PageLocatorService>();
             services.AddTransient<ManagerLocatorService>();
 
+            services.AddTransient<DepartmentJSONFileIOService>();
+
             return services;
         }
 
@@ -43,6 +46,7 @@ namespace Homework_14
             services.AddTransient<UsualBankDepartmentPageViewModel>();
             services.AddTransient<VipBankDepartmentPageViewModel>();
             services.AddTransient<JuridicalBankDepartmentPageViewModel>();
+            services.AddTransient<MainMenuViewModel>();
 
             return services;
         }

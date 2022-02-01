@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Homework_14.Views"
         xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
         xmlns:uc="clr-namespace:UserControlLibrary;assembly=UserControlLibrary"
+        xmlns:dlg="clr-namespace:DialogLibrary;assembly=DialogLibrary"
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="450" 
@@ -82,7 +83,12 @@
             <uc:MainMenuUserControl Grid.Row="0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    ParentWindowUC="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}}"/>
+                                    DataContext="{Binding MainMenuVM, Source={StaticResource ViewModelLocator}}"
+                                    ParentWindowUC="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}}"
+                                    SaveFileCommandUC="{Binding SaveFile}">
+                
+            </uc:MainMenuUserControl>
+
 
             <!--Закрыть окно-->
             <Button Grid.Row="0"

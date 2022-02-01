@@ -12,8 +12,12 @@
     <Viewbox Stretch="None">
         <Menu>
             <MenuItem Header="Файл" Height="23" Width="48">
-                <MenuItem Header="Сохранить"/>
-                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Сохранить"
+                          Command="{Binding SaveFileCommandUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"
+                          CommandParameter="{Binding SaveFileCommandParameterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"/>
+                <MenuItem Header="Открыть"
+                          Command="{Binding OpenFileCommandUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"
+                          CommandParameter="{Binding OpenFileCommandParameterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"/>
                 <MenuItem Header="Выход"
                           CommandParameter="{Binding ParentWindowUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}">
                     <MenuItem.Command>

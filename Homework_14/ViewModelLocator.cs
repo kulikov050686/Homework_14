@@ -32,5 +32,10 @@ namespace Homework_14
         /// Модель-Представление страницы департамента с юридическими лицами 
         /// </summary>
         public JuridicalBankDepartmentPageViewModel JuridicalBankDepartmentPageVM => App.Host.Services.GetRequiredService<JuridicalBankDepartmentPageViewModel>();
+
+        /// <summary>
+        /// Молель-Представление главного меню
+        /// </summary>
+        public MainMenuViewModel MainMenuVM => App.Host.Services.GetRequiredService<MainMenuViewModel>();
     }
 }

@@ -21,6 +21,7 @@
     <ProjectReference Include="..\CommandLibrary\CommandLibrary.csproj" />
     <ProjectReference Include="..\ConvertersLibrary\ConverterLibrary.csproj" />
     <ProjectReference Include="..\DialogLibrary\DialogLibrary.csproj" />
+    <ProjectReference Include="..\FileIOLibrary\FileIOLibrary.csproj" />
     <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj" />
     <ProjectReference Include="..\UserControlLibrary\UserControlLibrary.csproj" />
   </ItemGroup>

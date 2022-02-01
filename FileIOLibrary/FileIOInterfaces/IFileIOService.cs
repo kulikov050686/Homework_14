@@ -9,7 +9,7 @@
         /// Сохранить данные в файл
         /// </summary>
         /// <param name="pathFile"> Путь к файлу </param>
-        /// <param name="data"> Сохраняемые данные </param>       
+        /// <param name="data"> Сохраняемые данные </param>
         void Save(string pathFile, T data);
 
         /// <summary>
