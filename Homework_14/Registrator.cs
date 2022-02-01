@@ -27,6 +27,7 @@ namespace Homework_14
             services.AddTransient<DepositoryAccountManager>();
 
             services.AddTransient<PageLocatorService>();
+            services.AddTransient<ManagerLocatorService>();
 
             return services;
         }

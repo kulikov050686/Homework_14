@@ -11,6 +11,7 @@
     
     <Grid>
         <ListBox ItemsSource="{Binding DepositoryAccounts}"
+                 SelectedItem="{Binding SelectedDepositoryAccount}"
                  SelectedIndex="0">
             
             <ItemsControl.ItemsPanel>
@@ -47,6 +48,17 @@
                     </Border>                            
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
+
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Открыть счёт"
+                              Command="{Binding CreateDepositoryAccountCommand}"/>
+                    <MenuItem Header="Редактировать счёт"
+                              Command="{Binding EditDepositoryAccountCommand}"/>
+                    <MenuItem Header="Закрыть счёт"
+                              Command="{Binding DeleteDepositoryAccountCommand}"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>        
     </Grid>
 </Window>

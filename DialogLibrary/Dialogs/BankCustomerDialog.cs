@@ -46,6 +46,8 @@ namespace DialogLibrary
             if (_dialog.ShowDialog() != true) return null;
 
             var tempBankCustomer = CreateBankCustomer(bankCustomer.ClientStatus);
+            if (tempBankCustomer is null) return null;
+
             tempBankCustomer.Id = bankCustomer.Id;
             tempBankCustomer.DepositoryAccounts = bankCustomer.DepositoryAccounts;
 

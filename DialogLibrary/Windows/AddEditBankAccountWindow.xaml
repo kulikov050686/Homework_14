@@ -1,0 +1,54 @@
+﻿<Window x:Class="DialogLibrary.AddEditBankAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DialogLibrary"
+        xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
+        xmlns:converter="clr-namespace:ConverterLibrary;assembly=ConverterLibrary"
+        mc:Ignorable="d"        
+        Height="220" 
+        Width="200"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
+    <StackPanel Margin="5">
+        <GroupBox Header="Сумма"
+                  Visibility="{Binding AmountVisibility, Mode=TwoWay}">
+            <TextBox Text="{Binding Amount, Mode=TwoWay}"/>
+        </GroupBox>
+
+        <GroupBox Header="Процентная ставка"
+                  Visibility="{Binding InterestRateVisibility}"
+                  Margin="0 5 0 0">
+            <TextBox Text="{Binding InterestRate, Mode=TwoWay}"/>
+        </GroupBox>
+
+        <GroupBox Header="Начисление процентов"
+                  Visibility="{Binding DepositStatusVisibility}"
+                  Margin="0 5 0 0">
+            <ComboBox ItemsSource="{Binding DepositStatusList}"
+                      SelectedIndex="{Binding SelectedDepositStatus, Converter={converter:DepositStatusConverter}, Mode=TwoWay}"/>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0 5 0 0">
+
+            <Button Content="{Binding TextOfInputButton}" 
+                    Margin="5 0 5 0"                     
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:AddEditBankAccountWindow}}">
+                <Button.Command>
+                    <cmd:CloseDialogCommand DialogResult="True"/>
+                </Button.Command>
+            </Button>
+
+            <Button Content="Отмена" 
+                    Margin="5 0 5 0"                    
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:AddEditBankAccountWindow}}">
+                <Button.Command>
+                    <cmd:CloseDialogCommand DialogResult="False"/>
+                </Button.Command>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -14,13 +14,12 @@ namespace Homework_14.ViewModels
     public class UsualBankDepartmentPageViewModel : BaseViewModel
     {
         #region Закрытые поля
-               
-        private BankDepartmentManager _bankDepartmentManager;
+
+        private ManagerLocatorService _managerLocatorService;
         private PageLocatorService _pageLocatorService;
         private PageNavigator _pageNavigator;
         private DialogLocatorService _dialogLocatorService;
-        private BankCustomerManager _bankCustomerManager;
-
+        
         private IBankDepartment _bankDepartment;
         private IBankCustomer _selectedBankCustomer;
 
@@ -68,7 +67,7 @@ namespace Homework_14.ViewModels
                 var bankCustomer = _dialogLocatorService.BankCustomerDialog.Create(_bankDepartment.StatusDepartment);
                 if (bankCustomer is null) return;
 
-                _bankCustomerManager.Create(bankCustomer, _bankDepartment);
+                _managerLocatorService.BankCustomerManager.Create(bankCustomer, _bankDepartment);
             });
         }
 
@@ -84,7 +83,7 @@ namespace Homework_14.ViewModels
                 var bankCustomer = _dialogLocatorService.BankCustomerDialog.Edit(SelectedBankCustomer);
                 if (bankCustomer is null) return;
 
-                _bankCustomerManager.Update(bankCustomer);
+                _managerLocatorService.BankCustomerManager.Update(bankCustomer);
             }, (obj) => SelectedBankCustomer != null);
         }
 
@@ -97,7 +96,7 @@ namespace Homework_14.ViewModels
         {
             get => _deleteBankCustomerCommand ??= new RelayCommand((obj) =>
             {
-                _bankCustomerManager.Delete(SelectedBankCustomer, _bankDepartment);
+                _managerLocatorService.BankCustomerManager.Delete(SelectedBankCustomer, _bankDepartment);
             }, (obj) => SelectedBankCustomer != null);
         }
 
@@ -119,19 +118,17 @@ namespace Homework_14.ViewModels
 
         #region Конструктор
 
-        public UsualBankDepartmentPageViewModel(BankDepartmentManager bankDepartmentManager,
+        public UsualBankDepartmentPageViewModel(ManagerLocatorService managerLocatorService,
                                                 PageLocatorService pageLocatorService,
                                                 PageNavigator pageNavigator,
-                                                DialogLocatorService dialogLocatorService,
-                                                BankCustomerManager bankCustomerManager)
+                                                DialogLocatorService dialogLocatorService)
         {
-            _bankDepartmentManager = bankDepartmentManager;
+            _managerLocatorService = managerLocatorService;
             _pageLocatorService = pageLocatorService;
             _pageNavigator = pageNavigator;
-            _dialogLocatorService = dialogLocatorService;
-            _bankCustomerManager = bankCustomerManager;
+            _dialogLocatorService = dialogLocatorService;            
 
-            _bankDepartment = _bankDepartmentManager.Departments[0];
+            _bankDepartment = _managerLocatorService.BankDepartmentManager.Departments[0];
         }
 
         #endregion
