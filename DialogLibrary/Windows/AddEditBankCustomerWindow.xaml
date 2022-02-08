@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:DialogLibrary"
         xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
         xmlns:uc="clr-namespace:UserControlLibrary;assembly=UserControlLibrary"
+        xmlns:dlg="clr-namespace:FileDialogLibrary;assembly=FileDialogLibrary"
         mc:Ignorable="d"     
         ResizeMode="NoResize"
         Height="625"
@@ -15,10 +16,10 @@
     <Window.Resources>
         
         <!--Диалоговое окно открытия файла-->
-        <local:OpenDialog x:Key="openDialog"
-                          Title="Открыть файл"
-                          Filter="files (*.jpg)|*.jpg"
-                          PathToFile="{Binding PathToFileImage, Mode=TwoWay}"/>
+        <dlg:OpenFileWindowDialog x:Key="openDialog"
+                                  Title="Открыть файл"
+                                  Filter="files (*.jpg)|*.jpg"
+                                  PathToFile="{Binding PathToFileImage, Mode=TwoWay}"/>
     </Window.Resources>
 
     <Grid>
@@ -58,7 +59,7 @@
                                      VerticalAlignment="Top"
                                      TitleUC="Фото"
                                      TextOnButtonUC="Обзор..."
-                                     OpenFileCommandUC="{Binding OpenCommand, Source={StaticResource openDialog}}"
+                                     OpenFileCommandUC="{Binding OpenDialogCommand, Source={StaticResource openDialog}}"
                                      PathToImageFileUC="{Binding PathToFileImage, Mode=TwoWay}"/>
 
                 <!--Данные клиента-->

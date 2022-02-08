@@ -4,20 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UserControlLibrary"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
+             xmlns:dlg="clr-namespace:FileDialogLibrary;assembly=FileDialogLibrary"
              mc:Ignorable="d" 
              Height="23" 
              Width="45">
 
+    <UserControl.Resources>
+        
+        <!--Диалоговое окно открытия файла-->
+        <dlg:OpenFileWindowDialog x:Key="openDialog"
+                                  Title="Открыть файл"
+                                  Filter="{Binding FilterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}, Mode=TwoWay}"
+                                  PathToFile="{Binding PathToFileUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}, Mode=TwoWay}"/>
+
+        <dlg:SaveFileWindowDialog x:Key="saveDialog"
+                                  Title="Сохранить файл"
+                                  Filter="{Binding FilterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}, Mode=TwoWay}"
+                                  PathToFile="{Binding PathToFileUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}, Mode=TwoWay}"/>
+
+    </UserControl.Resources>
+
     <Viewbox Stretch="None">
         <Menu>
             <MenuItem Header="Файл" Height="23" Width="48">
-                <MenuItem Header="Сохранить"
-                          Command="{Binding SaveFileCommandUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"
-                          CommandParameter="{Binding SaveFileCommandParameterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"/>
-                <MenuItem Header="Открыть"
-                          Command="{Binding OpenFileCommandUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"
-                          CommandParameter="{Binding OpenFileCommandParameterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"/>
+                <MenuItem Header="Сохранить">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding OpenDialogCommand, Source={StaticResource saveDialog}}"/>
+
+                            <i:InvokeCommandAction Command="{Binding SaveFileCommandUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"
+                                                   CommandParameter="{Binding SaveFileCommandParameterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                
+                <MenuItem Header="Открыть">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding OpenDialogCommand, Source={StaticResource openDialog}}"/>
+
+                            <i:InvokeCommandAction Command="{Binding OpenFileCommandUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"
+                                                   CommandParameter="{Binding OpenFileCommandParameterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>                    
+                </MenuItem>                
+                
                 <MenuItem Header="Выход"
                           CommandParameter="{Binding ParentWindowUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}}">
                     <MenuItem.Command>

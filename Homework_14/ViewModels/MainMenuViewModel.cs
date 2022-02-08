@@ -27,7 +27,7 @@ namespace Homework_14.ViewModels
         {
             get => _saveFile ??= new RelayCommand((obj) =>
             {
-
+                
             });
         }
 
@@ -40,7 +40,7 @@ namespace Homework_14.ViewModels
         {
             get => _openFile ??= new RelayCommand((obj) =>
             {
-
+                
             });
         }
 

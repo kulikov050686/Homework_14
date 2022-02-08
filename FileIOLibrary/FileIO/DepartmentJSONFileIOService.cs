@@ -19,7 +19,7 @@ namespace FileIOLibrary
         public void Save(string pathFile, IList<IBankDepartment> data)
         {
             using (StreamWriter writer = new StreamWriter(pathFile, false))
-            {                
+            {
                 writer.Write(JsonConvert.SerializeObject(data, Formatting.Indented));
             }
         }

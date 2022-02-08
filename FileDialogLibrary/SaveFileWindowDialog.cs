@@ -5,19 +5,19 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
-namespace DialogLibrary
+namespace FileDialogLibrary
 {
     /// <summary>
-    /// Класс диалогового окна сохранения или открытия файла
+    /// Класс диалогового окна сохранения файла
     /// </summary>
-    public class OpenDialog : Freezable
+    public class SaveFileWindowDialog : Freezable
     {
         #region Путь до файла
 
         public static readonly DependencyProperty PathToFileProperty =
             DependencyProperty.Register(nameof(PathToFile),
                                         typeof(string),
-                                        typeof(OpenDialog),
+                                        typeof(SaveFileWindowDialog),
                                         new PropertyMetadata(default(string)));
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace DialogLibrary
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(nameof(Title),
                                         typeof(string),
-                                        typeof(OpenDialog),
+                                        typeof(SaveFileWindowDialog),
                                         new PropertyMetadata(default(string)));
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace DialogLibrary
         public static readonly DependencyProperty FilterProperty =
            DependencyProperty.Register(nameof(Filter),
                                        typeof(string),
-                                       typeof(OpenDialog),
+                                       typeof(SaveFileWindowDialog),
                                        new PropertyMetadata("Все файлы (*.*)|*.*"));
 
         /// <summary>
@@ -74,29 +74,30 @@ namespace DialogLibrary
 
         #region Комманда открыть диалог
 
-        private ICommand _openCommand = default;
-        public ICommand OpenCommand
+        private ICommand _openDialogCommand = default;
+        public ICommand OpenDialogCommand
         {
-            get => _openCommand ??= new RelayCommand((obj) =>
+            get => _openDialogCommand ??= new RelayCommand((obj) =>
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog
+                SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
                     Title = Title,
-                    Filter = Filter
+                    Filter = Filter,
+                    OverwritePrompt = true
                 };
 
                 if (PathToFile is null)
                 {
-                    openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    saveFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 }
                 else
                 {
-                    openFileDialog.InitialDirectory = PathToFile;
+                    saveFileDialog.InitialDirectory = PathToFile;
                 }
 
-                if (openFileDialog.ShowDialog() == true)
+                if (saveFileDialog.ShowDialog() == true)
                 {
-                    PathToFile = openFileDialog.FileName;
+                    PathToFile = saveFileDialog.FileName;
                 }
             });
         }
@@ -105,7 +106,7 @@ namespace DialogLibrary
 
         /// <summary>
         /// Возвращает новый класс реализации
-        /// </summary>        
-        protected override Freezable CreateInstanceCore() => new OpenDialog();
+        /// </summary>
+        protected override Freezable CreateInstanceCore() => new SaveFileWindowDialog();
     }
 }

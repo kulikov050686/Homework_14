@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Homework_14.Views"
         xmlns:cmd="clr-namespace:CommandLibrary;assembly=CommandLibrary"
-        xmlns:uc="clr-namespace:UserControlLibrary;assembly=UserControlLibrary"
-        xmlns:dlg="clr-namespace:DialogLibrary;assembly=DialogLibrary"
+        xmlns:uc="clr-namespace:UserControlLibrary;assembly=UserControlLibrary"             
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="450" 
@@ -49,8 +48,8 @@
                     </Setter>
                 </Trigger>
             </Style.Triggers>
-        </Style>        
-        
+        </Style>
+
     </Window.Resources>
 
     <Border BorderThickness="10"  
@@ -85,7 +84,10 @@
                                     VerticalAlignment="Center"
                                     DataContext="{Binding MainMenuVM, Source={StaticResource ViewModelLocator}}"
                                     ParentWindowUC="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}}"
-                                    SaveFileCommandUC="{Binding SaveFile}">
+                                    FilterUC="files (*.json)|*.json"
+                                    SaveFileCommandUC="{Binding SaveFile}"
+                                    OpenFileCommandUC="{Binding OpenFile}"
+                                    PathToFileUC="{Binding PathToFile, Mode=TwoWay}">
                 
             </uc:MainMenuUserControl>
 
@@ -99,7 +101,7 @@
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow}}">
 
                 <Button.Command>
-                    <cmd:CloseWindowCommand/>
+                    <cmd:CloseWindowCommand/>                    
                 </Button.Command>                              
             </Button>
 

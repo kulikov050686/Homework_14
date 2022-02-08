@@ -112,6 +112,26 @@ namespace UserControlLibrary
 
         #endregion
 
+        #region Фильтр расширений файлов
+
+        public static readonly DependencyProperty FilterUCProperty =
+           DependencyProperty.Register(nameof(FilterUC),
+                                       typeof(string),
+                                       typeof(MainMenuUserControl),
+                                       new PropertyMetadata("Все файлы (*.*)|*.*"));
+
+        /// <summary>
+        /// Фильтр расширений файлов
+        /// </summary>
+        [Description("Фильтр расширений файлов")]
+        public string FilterUC
+        {
+            get => (string)GetValue(FilterUCProperty);
+            set => SetValue(FilterUCProperty, value);
+        }
+
+        #endregion
+
         public MainMenuUserControl() => InitializeComponent();        
     }
 }

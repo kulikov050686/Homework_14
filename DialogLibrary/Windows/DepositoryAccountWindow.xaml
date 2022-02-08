@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DialogLibrary"
+        xmlns:converter="clr-namespace:ConverterLibrary;assembly=ConverterLibrary"
         mc:Ignorable="d"        
         Height="450" 
         Width="800"
@@ -43,6 +44,11 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Процентная ставка: "/>
                                 <TextBlock Text="{Binding InterestRate}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Статус депозита: "/>
+                                <TextBlock Text="{Binding DepositStatus, Converter={converter:DepositStatusToTextConverter}}"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>                            
