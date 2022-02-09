@@ -31,6 +31,7 @@ namespace Homework_14
             services.AddTransient<ManagerLocatorService>();
 
             services.AddTransient<DepartmentJSONFileIOService>();
+            services.AddTransient<ProcessingOfDepositoryAccounts>();
 
             return services;
         }

@@ -15,6 +15,7 @@ namespace Homework_14.ViewModels
         private Page _currentPage;
         private PageNavigator _pageNavigator;
         private PageLocatorService _pageLocatorService;
+        private ProcessingOfDepositoryAccounts _processingOfDepositoryAccounts;
 
         #endregion
 
@@ -35,12 +36,17 @@ namespace Homework_14.ViewModels
         #region Конструктор
 
         public MainWindowViewModel(PageNavigator pageNavigatorService,
-                                   PageLocatorService pageLocatorService)
+                                   PageLocatorService pageLocatorService,
+                                   ProcessingOfDepositoryAccounts processingOfDepositoryAccounts)
         {
             Title = "Банк";
 
             _pageNavigator = pageNavigatorService;
             _pageLocatorService = pageLocatorService;
+            _processingOfDepositoryAccounts = processingOfDepositoryAccounts;
+
+            _processingOfDepositoryAccounts.StartCalculate();
+
             CurrentPage = pageLocatorService.MainPage;
 
             _pageNavigator.PageNavigatorEvent += OnPageNavigatorEvent;
