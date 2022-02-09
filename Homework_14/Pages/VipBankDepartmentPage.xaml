@@ -135,6 +135,29 @@
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
+
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить клиента"
+                              Command="{Binding AddBankCustomerCommand}"/>
+
+                    <MenuItem Header="Редактировать данные клиента"
+                              Command="{Binding EditBankCustomerCommand}"
+                              CommandParameter="{Binding SelectedBankCustomer}"/>
+
+                    <MenuItem Header="Удалить клиента"
+                              Command="{Binding DeleteBankCustomerCommand}"
+                              CommandParameter="{Binding SelectedBankCustomer}"/>
+
+                    <MenuItem Header="Счета">
+
+                        <MenuItem Header="Депозитарные счета"
+                                  Command="{Binding DepositoryAccountsCommand}"
+                                  CommandParameter="{Binding SelectedBankCustomer}"/>
+
+                    </MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
 
     </Grid>
