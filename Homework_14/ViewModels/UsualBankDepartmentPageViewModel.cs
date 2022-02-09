@@ -33,7 +33,7 @@ namespace Homework_14.ViewModels
         /// <summary>
         /// Список всех клиентов банка
         /// </summary>
-        public IEnumerable<IBankCustomer> BankCustomers => _bankDepartment.BankCustomers;
+        public IList<IBankCustomer> BankCustomers => _bankDepartment.BankCustomers;
 
         /// <summary>
         /// Выбранный клиент
@@ -126,7 +126,7 @@ namespace Homework_14.ViewModels
             _managerLocatorService = managerLocatorService;
             _pageLocatorService = pageLocatorService;
             _pageNavigator = pageNavigator;
-            _dialogLocatorService = dialogLocatorService;            
+            _dialogLocatorService = dialogLocatorService;
 
             _bankDepartment = _managerLocatorService.BankDepartmentManager.Departments[0];
         }

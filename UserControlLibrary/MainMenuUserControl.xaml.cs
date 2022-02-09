@@ -35,6 +35,9 @@ namespace UserControlLibrary
                                        typeof(MainMenuUserControl),
                                        new PropertyMetadata(default(ICommand)));
 
+        /// <summary>
+        /// Команда открытия файла
+        /// </summary>
         [Description("Команда открытия файла")]
         public ICommand OpenFileCommandUC
         {
@@ -52,6 +55,9 @@ namespace UserControlLibrary
                                        typeof(MainMenuUserControl),
                                        new PropertyMetadata(default(object)));
 
+        /// <summary>
+        /// Параметр команды открытия файла
+        /// </summary>
         [Description("Параметр команды открытия файла")]
         public object OpenFileCommandParameterUC
         {
@@ -69,6 +75,9 @@ namespace UserControlLibrary
                                        typeof(MainMenuUserControl),
                                        new PropertyMetadata(default(ICommand)));
 
+        /// <summary>
+        /// Команда сохранения файла
+        /// </summary>
         [Description("Команда сохранения файла")]
         public ICommand SaveFileCommandUC
         {
@@ -86,6 +95,9 @@ namespace UserControlLibrary
                                        typeof(MainMenuUserControl),
                                        new PropertyMetadata(default(object)));
 
+        /// <summary>
+        /// Параметр команды сохранения в файл
+        /// </summary>
         [Description("Параметр команды сохранения в файл")]
         public object SaveFileCommandParameterUC
         {
@@ -103,6 +115,9 @@ namespace UserControlLibrary
                                        typeof(MainMenuUserControl),
                                        new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Путь до файла
+        /// </summary>
         [Description("Путь до файла")]
         public string PathToFileUC
         {

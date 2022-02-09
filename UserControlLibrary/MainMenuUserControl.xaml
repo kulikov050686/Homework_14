@@ -19,6 +19,7 @@
                                   Filter="{Binding FilterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}, Mode=TwoWay}"
                                   PathToFile="{Binding PathToFileUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}, Mode=TwoWay}"/>
 
+        <!--Диалоговое окно сохранения файла-->
         <dlg:SaveFileWindowDialog x:Key="saveDialog"
                                   Title="Сохранить файл"
                                   Filter="{Binding FilterUC, RelativeSource={RelativeSource AncestorType=local:MainMenuUserControl}, Mode=TwoWay}"

@@ -54,6 +54,7 @@ namespace ModelLibrary
             {
                 if(value is null)
                     throw new ArgumentNullException("Адрес прописки не может быть null!!!");
+
                 _placeOfResidence = value;
             }
         }

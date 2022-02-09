@@ -2,6 +2,8 @@
 using CommandLibrary;
 using FileIOLibrary;
 using Homework_14.Services;
+using ModelLibrary;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace Homework_14.ViewModels
@@ -15,9 +17,13 @@ namespace Homework_14.ViewModels
 
         private DepartmentJSONFileIOService _departmentJSONFileIOService;
         private ManagerLocatorService _managerLocatorService;
+        private IList<IBankDepartment> _bankDepartments;
 
         #endregion
 
+        /// <summary>
+        /// Путь до файла
+        /// </summary>
         public string PathToFile { get; set; }
 
         #region Комманда сохранить в файл
@@ -27,8 +33,10 @@ namespace Homework_14.ViewModels
         {
             get => _saveFile ??= new RelayCommand((obj) =>
             {
-                
-            });
+                if (string.IsNullOrWhiteSpace(PathToFile)) return;
+
+                _departmentJSONFileIOService.Save(PathToFile, _bankDepartments);
+            },(obj) => _bankDepartments != null);
         }
 
         #endregion
@@ -40,17 +48,27 @@ namespace Homework_14.ViewModels
         {
             get => _openFile ??= new RelayCommand((obj) =>
             {
-                
+                if (string.IsNullOrWhiteSpace(PathToFile)) return;
+
+                var tempBankDepartment = _departmentJSONFileIOService.Open(PathToFile);
+                if (tempBankDepartment is null) return;
+
+                _managerLocatorService.BankDepartmentManager.SetAll(tempBankDepartment);
             });
         }
 
         #endregion
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>        
         public MainMenuViewModel(DepartmentJSONFileIOService departmentJSONFileIOService,
                                  ManagerLocatorService managerLocatorService)
         {
             _departmentJSONFileIOService = departmentJSONFileIOService;
             _managerLocatorService = managerLocatorService;
+
+            _bankDepartments = _managerLocatorService.BankDepartmentManager.Departments;
         }
     }
 }

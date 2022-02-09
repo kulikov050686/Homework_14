@@ -87,10 +87,7 @@
                                     FilterUC="files (*.json)|*.json"
                                     SaveFileCommandUC="{Binding SaveFile}"
                                     OpenFileCommandUC="{Binding OpenFile}"
-                                    PathToFileUC="{Binding PathToFile, Mode=TwoWay}">
-                
-            </uc:MainMenuUserControl>
-
+                                    PathToFileUC="{Binding PathToFile, Mode=TwoWay}"/>
 
             <!--Закрыть окно-->
             <Button Grid.Row="0"

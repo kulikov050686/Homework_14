@@ -26,6 +26,12 @@ namespace ServiceLibrary
         public IBankDepartment Get(string name) => _bankDepartmentRepository.Get(name);
 
         /// <summary>
+        /// Задать список департаментов
+        /// </summary>
+        /// <param name="items"> Список департаментов </param>
+        public void SetAll(IEnumerable<IBankDepartment> items) => _bankDepartmentRepository.SetAll(items);
+
+        /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="bankDepartmentRepository"> Хранилище департаментов банка </param>
