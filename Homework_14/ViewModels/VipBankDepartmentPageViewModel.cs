@@ -9,8 +9,6 @@ namespace Homework_14.ViewModels
     /// </summary>
     public class VipBankDepartmentPageViewModel : BaseBankDepartmentPageViewModel
     {
-        public override BankDepartmentPage BankDepartmentPage => BankDepartmentPage.VIP;
-
         #region Конструктор
 
         public VipBankDepartmentPageViewModel(ManagerLocatorService managerLocatorService,
@@ -19,7 +17,8 @@ namespace Homework_14.ViewModels
                                               DialogLocatorService dialogLocatorService) : base(managerLocatorService,
                                                                                                 pageLocatorService,
                                                                                                 pageNavigator,
-                                                                                                dialogLocatorService)
+                                                                                                dialogLocatorService, 
+                                                                                                BankDepartmentPage.VIP)
         {
 
         }

@@ -21,16 +21,11 @@ namespace Homework_14.ViewModels
         protected PageLocatorService _pageLocatorService;
         protected PageNavigator _pageNavigator;
         protected DialogLocatorService _dialogLocatorService;
-
         protected IBankDepartment _bankDepartment;
+
         private IBankCustomer _selectedBankCustomer;
 
         #endregion
-
-        /// <summary>
-        /// Страница банковского департамента
-        /// </summary>
-        public abstract BankDepartmentPage BankDepartmentPage { get; }
 
         /// <summary>
         /// Имя департамента
@@ -128,14 +123,15 @@ namespace Homework_14.ViewModels
         public BaseBankDepartmentPageViewModel(ManagerLocatorService managerLocatorService,
                                                PageLocatorService pageLocatorService,
                                                PageNavigator pageNavigator,
-                                               DialogLocatorService dialogLocatorService)
+                                               DialogLocatorService dialogLocatorService,
+                                               BankDepartmentPage bankDepartmentPage)
         {
             _managerLocatorService = managerLocatorService;
             _pageLocatorService = pageLocatorService;
             _pageNavigator = pageNavigator;
             _dialogLocatorService = dialogLocatorService;
 
-            switch (BankDepartmentPage)
+            switch (bankDepartmentPage)
             {
                 case BankDepartmentPage.USUAL:
                     _bankDepartment = _managerLocatorService.BankDepartmentManager.Departments[0];

@@ -9,8 +9,6 @@ namespace Homework_14.ViewModels
     /// </summary>
     public class UsualBankDepartmentPageViewModel : BaseBankDepartmentPageViewModel
     {
-        public override BankDepartmentPage BankDepartmentPage => BankDepartmentPage.USUAL;
-
         #region Конструктор
 
         public UsualBankDepartmentPageViewModel(ManagerLocatorService managerLocatorService,
@@ -19,7 +17,8 @@ namespace Homework_14.ViewModels
                                                 DialogLocatorService dialogLocatorService) : base(managerLocatorService,
                                                                                                   pageLocatorService,
                                                                                                   pageNavigator,
-                                                                                                  dialogLocatorService)
+                                                                                                  dialogLocatorService,
+                                                                                                  BankDepartmentPage.USUAL)
         {
 
         }
