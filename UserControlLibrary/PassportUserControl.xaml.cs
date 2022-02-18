@@ -15,6 +15,9 @@ namespace UserControlLibrary
                                        typeof(PassportUserControl),
                                        new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Название
+        /// </summary>
         [Description("Название")]
         public string TitleUC
         {
@@ -32,6 +35,9 @@ namespace UserControlLibrary
                                        typeof(PassportUserControl),
                                        new PropertyMetadata(default(uint?)));
 
+        /// <summary>
+        /// Номер паспорта
+        /// </summary>
         [Description("Номер паспорта")]
         public uint? NumberUC
         {
@@ -49,6 +55,9 @@ namespace UserControlLibrary
                                        typeof(PassportUserControl),
                                        new PropertyMetadata(default(uint?)));
 
+        /// <summary>
+        /// Серия паспорта
+        /// </summary>
         [Description("Серия паспорта")]
         public uint? SeriesUC
         {
@@ -66,6 +75,9 @@ namespace UserControlLibrary
                                        typeof(PassportUserControl),
                                        new PropertyMetadata(default(uint?)));
 
+        /// <summary>
+        /// Код подразделения левый
+        /// </summary>
         [Description("Код подразделения левый")]
         public uint? DivisionCodeLeftUC
         {
@@ -83,6 +95,9 @@ namespace UserControlLibrary
                                        typeof(PassportUserControl),
                                        new PropertyMetadata(default(uint?)));
 
+        /// <summary>
+        /// Код подразделения правый
+        /// </summary>
         [Description("Код подразделения правый")]
         public uint? DivisionCodeRightUC
         {
@@ -100,6 +115,9 @@ namespace UserControlLibrary
                                        typeof(PassportUserControl),
                                        new PropertyMetadata(default(DateTime?)));
 
+        /// <summary>
+        /// Дата выдачи паспорта
+        /// </summary>
         [Description("Дата выдачи паспорта")]
         public DateTime? DateOfIssueUC
         {
@@ -117,6 +135,9 @@ namespace UserControlLibrary
                                        typeof(PassportUserControl),
                                        new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Место выдачи паспорта
+        /// </summary>
         [Description("Место выдачи паспорта")]
         public string PlaceOfIssueUC
         {

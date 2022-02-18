@@ -15,6 +15,9 @@ namespace UserControlLibrary
                                        typeof(AddressUserControl),
                                        new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Название
+        /// </summary>
         [Description("Название")]
         public string TitleUC
         {
@@ -32,6 +35,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Регион
+        /// </summary>
         [Description("Регион")]
         public string RegionUC
         {
@@ -49,6 +55,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Город
+        /// </summary>
         [Description("Город")]
         public string CityUC
         {
@@ -66,6 +75,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Район города
+        /// </summary>
         [Description("Район города")]
         public string DistrictUC
         {
@@ -83,6 +95,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Название улицы
+        /// </summary>
         [Description("Название улицы")]
         public string StreetUC
         {
@@ -100,6 +115,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(uint?)));
 
+        /// <summary>
+        /// Номер дома
+        /// </summary>
         [Description("Номер дома")]
         public uint? HouseNumberUC
         {
@@ -117,6 +135,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Корпус дома
+        /// </summary>
         [Description("Корпус дома")]
         public string HousingUC
         {
@@ -134,6 +155,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(uint?)));
 
+        /// <summary>
+        /// Номер квартиры
+        /// </summary>
         [Description("Номер квартиры")]
         public uint? ApartmentNumberUC
         {
@@ -151,6 +175,9 @@ namespace UserControlLibrary
                                         typeof(AddressUserControl),
                                         new PropertyMetadata(default(DateTime?)));
 
+        /// <summary>
+        /// Дата регистрации
+        /// </summary>
         [Description("Дата регистрации")]
         public DateTime? RegistrationDateUC
         {

@@ -15,6 +15,9 @@ namespace UserControlLibrary
                                        typeof(PhotoUserControl),
                                        new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Название
+        /// </summary>
         [Description("Название")]
         public string TitleUC
         {
@@ -32,6 +35,9 @@ namespace UserControlLibrary
                                        typeof(PhotoUserControl),
                                        new PropertyMetadata(default(ICommand)));
 
+        /// <summary>
+        /// Команда открытия файла
+        /// </summary>
         [Description("Команда открытия файла")]
         public ICommand OpenFileCommandUC
         {
@@ -49,6 +55,9 @@ namespace UserControlLibrary
                                        typeof(PhotoUserControl),
                                        new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Путь до файла картинки
+        /// </summary>
         [Description("Путь до файла картинки")]
         public string PathToImageFileUC
         {
@@ -66,6 +75,9 @@ namespace UserControlLibrary
                                        typeof(PhotoUserControl),
                                        new PropertyMetadata(default(string)));
 
+        /// <summary>
+        /// Текст на кнопке
+        /// </summary>
         [Description("Текст на кнопке")]
         public string TextOnButtonUC
         {
