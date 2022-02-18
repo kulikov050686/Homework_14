@@ -58,26 +58,31 @@ namespace DialogLibrary
 
         /// <summary>
         /// Создать клиента банка
-        /// </summary>
-        /// <param name="dialog"> Окно диалога </param>
+        /// </summary>        
         /// <param name="clientStatus"> Статус клиента </param>
         private IBankCustomer CreateBankCustomer(Status clientStatus)
         {
             if (_dialog is null)
                 throw new ArgumentNullException(nameof(_dialog));
 
-            var residenceAddress = CreateAddress(_dialog.RegistrationDatePlaceOfResidence,
-                                                 _dialog.RegionPlaceOfResidence,
-                                                 _dialog.CityPlaceOfResidence,
-                                                 _dialog.StreetPlaceOfResidence,
-                                                 _dialog.HouseNumberPlaceOfResidence,
-                                                 _dialog.ApartmentNumberPlaceOfResidence,
-                                                 _dialog.HousingPlaceOfResidence,
-                                                 _dialog.DistrictPlaceOfResidence);
+            IAddress residenceAddress = null;
+            IAddress registrationAddress = null;
+            IPerson person = null;
+            IDivisionCode divisionCode = null;
+            IPassport passport = null;
 
-            if (residenceAddress is null) return null;
+            residenceAddress = CreateAddress(_dialog.RegistrationDatePlaceOfResidence,
+                                             _dialog.RegionPlaceOfResidence,
+                                             _dialog.CityPlaceOfResidence,
+                                             _dialog.StreetPlaceOfResidence,
+                                             _dialog.HouseNumberPlaceOfResidence,
+                                             _dialog.ApartmentNumberPlaceOfResidence,
+                                             _dialog.HousingPlaceOfResidence,
+                                             _dialog.DistrictPlaceOfResidence);
 
-            var registrationAddress = CreateAddress(_dialog.RegistrationDateRegistration,
+            try
+            {
+                registrationAddress = CreateAddress(_dialog.RegistrationDateRegistration,
                                                     _dialog.RegionRegistration,
                                                     _dialog.CityRegistration,
                                                     _dialog.StreetRegistration,
@@ -85,31 +90,28 @@ namespace DialogLibrary
                                                     _dialog.ApartmentNumberRegistration,
                                                     _dialog.HousingRegistration,
                                                     _dialog.DistrictRegistration);
+            }
+            catch (Exception)
+            {}
 
-            var persone = CreatePersone(_dialog.SurnameBankCustomer,
-                                        _dialog.NameBankCustomer,
-                                        _dialog.PatronymicBankCustomer,
-                                        _dialog.GenderBankCustomer,
-                                        _dialog.BirthdayBankCustomer,
-                                        _dialog.PlaceOfBirthBankCustomer,
-                                        residenceAddress,
-                                        registrationAddress);
+            person = CreatePerson(_dialog.SurnameBankCustomer,
+                                  _dialog.NameBankCustomer,
+                                  _dialog.PatronymicBankCustomer,
+                                  _dialog.GenderBankCustomer,
+                                  _dialog.BirthdayBankCustomer,
+                                  _dialog.PlaceOfBirthBankCustomer,
+                                  residenceAddress,
+                                  registrationAddress);
 
-            if (persone is null) return null;
+            divisionCode = CreateDivisionCode(_dialog.DivisionCodeLeftPassport,
+                                              _dialog.DivisionCodeRightPassport);
 
-            var divisionCode = CreateDivisionCode(_dialog.DivisionCodeLeftPassport,
-                                                  _dialog.DivisionCodeRightPassport);
-
-            if (divisionCode is null) return null;
-
-            var passport = CreatePassport(_dialog.SeriesPassport,
-                                          _dialog.NumberPassport,
-                                          _dialog.PlaceOfIssuePassport,
-                                          _dialog.DateOfIssuePassport,
-                                          divisionCode,
-                                          persone);
-
-            if (passport is null) return null;
+            passport = CreatePassport(_dialog.SeriesPassport,
+                                      _dialog.NumberPassport,
+                                      _dialog.PlaceOfIssuePassport,
+                                      _dialog.DateOfIssuePassport,
+                                      divisionCode,
+                                      person);
 
             return new BankCustomer(0,
                                     passport,
@@ -191,21 +193,14 @@ namespace DialogLibrary
                                        string housing,
                                        string district)
         {
-            try
-            {
-                return new Address(registrationDate,
-                                   region,
-                                   city,
-                                   street,
-                                   houseNumber,
-                                   apartmentNumber,
-                                   housing,
-                                   district);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return new Address(registrationDate,
+                               region,
+                               city,
+                               street,
+                               houseNumber,
+                               apartmentNumber,
+                               housing,
+                               district);                    
         }
 
         /// <summary>
@@ -219,30 +214,23 @@ namespace DialogLibrary
         /// <param name="placeOfBirth"> Место рождения </param>
         /// <param name="placeOfResidence"> Место жительства (прописка) </param>
         /// <param name="placeOfRegistration"> Место регистрации </param>
-        private IPerson CreatePersone(string surname,
-                                      string name,
-                                      string patronymic,
-                                      Gender gender,
-                                      DateTime? birthday,
-                                      string placeOfBirth,
-                                      IAddress placeOfResidence,
-                                      IAddress placeOfRegistration)
+        private IPerson CreatePerson(string surname,
+                                     string name,
+                                     string patronymic,
+                                     Gender gender,
+                                     DateTime? birthday,
+                                     string placeOfBirth,
+                                     IAddress placeOfResidence,
+                                     IAddress placeOfRegistration)
         {
-            try
-            {
-                return new Person(surname,
-                                  name,
-                                  patronymic,
-                                  gender,
-                                  birthday,
-                                  placeOfBirth,
-                                  placeOfResidence,
-                                  placeOfRegistration);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return new Person(surname,
+                              name,
+                              patronymic,
+                              gender,
+                              birthday,
+                              placeOfBirth,
+                              placeOfResidence,
+                              placeOfRegistration);
         }
 
         /// <summary>
@@ -261,19 +249,12 @@ namespace DialogLibrary
                                          IDivisionCode divisionCode,
                                          IPerson holder)
         {
-            try
-            {
-                return new Passport(series,
-                                    number,
-                                    placeOfIssue,
-                                    dateOfIssue,
-                                    divisionCode,
-                                    holder);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return new Passport(series,
+                                number,
+                                placeOfIssue,
+                                dateOfIssue,
+                                divisionCode,
+                                holder);
         }
 
         /// <summary>
@@ -283,14 +264,7 @@ namespace DialogLibrary
         /// <param name="right"> Правая часть кода </param>        
         private IDivisionCode CreateDivisionCode(uint? left, uint? right)
         {
-            try
-            {
-                return new DivisionCode(left, right);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return new DivisionCode(left, right);
         }
 
         #endregion

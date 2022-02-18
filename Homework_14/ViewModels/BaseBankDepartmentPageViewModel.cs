@@ -6,6 +6,7 @@ using ModelLibrary;
 using ServiceLibrary;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Homework_14.ViewModels
@@ -66,10 +67,20 @@ namespace Homework_14.ViewModels
         {
             get => _addBankCustomerCommand ??= new RelayCommand((obj) =>
             {
-                var bankCustomer = _dialogLocatorService.BankCustomerDialog.Create(_bankDepartment.StatusDepartment);
-                if (bankCustomer is null) return;
+                try
+                {
+                    var bankCustomer = _dialogLocatorService.BankCustomerDialog.Create(_bankDepartment.StatusDepartment);
+                    if (bankCustomer is null) return;
 
-                _managerLocatorService.BankCustomerManager.Create(bankCustomer, _bankDepartment);
+                    _managerLocatorService.BankCustomerManager.Create(bankCustomer, _bankDepartment);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, 
+                                    "Ошибка!!!", 
+                                    MessageBoxButton.OK, 
+                                    MessageBoxImage.Error);
+                }
             });
         }
 
@@ -82,10 +93,20 @@ namespace Homework_14.ViewModels
         {
             get => _editBankCustomerCommand ??= new RelayCommand((obj) =>
             {
-                var bankCustomer = _dialogLocatorService.BankCustomerDialog.Edit(SelectedBankCustomer);
-                if (bankCustomer is null) return;
+                try
+                {
+                    var bankCustomer = _dialogLocatorService.BankCustomerDialog.Edit(SelectedBankCustomer);
+                    if (bankCustomer is null) return;
 
-                _managerLocatorService.BankCustomerManager.Update(bankCustomer);
+                    _managerLocatorService.BankCustomerManager.Update(bankCustomer);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message,
+                                    "Ошибка!!!",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }               
             }, (obj) => SelectedBankCustomer != null);
         }
 

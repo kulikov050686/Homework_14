@@ -67,7 +67,7 @@ namespace ModelLibrary
                        string housing = null,
                        string district = null)
         {
-            if(registrationDate is null)
+            if (registrationDate is null)
                 throw new ArgumentException("Дата регистрации не может быть null!!!");
             if (string.IsNullOrWhiteSpace(region))
                 throw new ArgumentException("Регион или область не может быть пустым!!!");

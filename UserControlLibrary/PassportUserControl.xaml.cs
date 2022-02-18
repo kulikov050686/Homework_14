@@ -28,14 +28,14 @@ namespace UserControlLibrary
 
         public static readonly DependencyProperty NumberUCProperty =
            DependencyProperty.Register(nameof(NumberUC),
-                                       typeof(long?),
+                                       typeof(uint?),
                                        typeof(PassportUserControl),
-                                       new PropertyMetadata(default(long?)));
+                                       new PropertyMetadata(default(uint?)));
 
         [Description("Номер паспорта")]
-        public long? NumberUC
+        public uint? NumberUC
         {
-            get => (long?)GetValue(NumberUCProperty);
+            get => (uint?)GetValue(NumberUCProperty);
             set => SetValue(NumberUCProperty, value);
         }
 
@@ -45,14 +45,14 @@ namespace UserControlLibrary
 
         public static readonly DependencyProperty SeriesUCProperty =
            DependencyProperty.Register(nameof(SeriesUC),
-                                       typeof(long?),
+                                       typeof(uint?),
                                        typeof(PassportUserControl),
-                                       new PropertyMetadata(default(long?)));
+                                       new PropertyMetadata(default(uint?)));
 
         [Description("Серия паспорта")]
-        public long? SeriesUC
+        public uint? SeriesUC
         {
-            get => (long?)GetValue(SeriesUCProperty);
+            get => (uint?)GetValue(SeriesUCProperty);
             set => SetValue(SeriesUCProperty, value);
         }
 
@@ -62,14 +62,14 @@ namespace UserControlLibrary
 
         public static readonly DependencyProperty DivisionCodeLeftUCProperty =
            DependencyProperty.Register(nameof(DivisionCodeLeftUC),
-                                       typeof(int?),
+                                       typeof(uint?),
                                        typeof(PassportUserControl),
-                                       new PropertyMetadata(default(int?)));
+                                       new PropertyMetadata(default(uint?)));
 
         [Description("Код подразделения левый")]
-        public int? DivisionCodeLeftUC
+        public uint? DivisionCodeLeftUC
         {
-            get => (int?)GetValue(DivisionCodeLeftUCProperty);
+            get => (uint?)GetValue(DivisionCodeLeftUCProperty);
             set => SetValue(DivisionCodeLeftUCProperty, value);
         }
 
@@ -79,14 +79,14 @@ namespace UserControlLibrary
 
         public static readonly DependencyProperty DivisionCodeRightUCProperty =
            DependencyProperty.Register(nameof(DivisionCodeRightUC),
-                                       typeof(int?),
+                                       typeof(uint?),
                                        typeof(PassportUserControl),
-                                       new PropertyMetadata(default(int?)));
+                                       new PropertyMetadata(default(uint?)));
 
         [Description("Код подразделения правый")]
-        public int? DivisionCodeRightUC
+        public uint? DivisionCodeRightUC
         {
-            get => (int?)GetValue(DivisionCodeRightUCProperty);
+            get => (uint?)GetValue(DivisionCodeRightUCProperty);
             set => SetValue(DivisionCodeRightUCProperty, value);
         }
 

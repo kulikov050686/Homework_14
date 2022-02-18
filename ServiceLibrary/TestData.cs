@@ -40,7 +40,9 @@ namespace TestDataProject
             
             return departments;
         }
-        
+
+        #region Закрытые методы
+
         /// <summary>
         /// Заполнение клиентами банка депортаментов
         /// </summary>
@@ -97,12 +99,12 @@ namespace TestDataProject
                 {
                     if (key)
                     {
-                        bankAccount = new DepositoryAccount(index, 1000, InterestRate(item.ClientStatus), DepositStatus.WITHOUTCAPITALIZATION);                        
+                        bankAccount = new DepositoryAccount(index, 1000, InterestRate(item.ClientStatus), DepositStatus.WITHOUTCAPITALIZATION);
                         key = !key;
                     }
                     else
                     {
-                        bankAccount = new DepositoryAccount(index, 2000, InterestRate(item.ClientStatus), DepositStatus.WITHCAPITALIZATION);                        
+                        bankAccount = new DepositoryAccount(index, 2000, InterestRate(item.ClientStatus), DepositStatus.WITHCAPITALIZATION);
                         key = !key;
                     }
 
@@ -127,5 +129,7 @@ namespace TestDataProject
             
             return 12;
         }
+
+        #endregion
     }
 }

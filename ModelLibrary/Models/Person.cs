@@ -100,6 +100,7 @@ namespace ModelLibrary
             Birthday = birthday;
             PlaceOfBirth = placeOfBirth;
             PlaceOfResidence = placeOfResidence;
+
             PlaceOfRegistration = placeOfRegistration;
         }
     }
