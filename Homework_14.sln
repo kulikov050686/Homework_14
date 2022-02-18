@@ -25,9 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DialogLibrary", "DialogLibr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileDialogLibrary", "FileDialogLibrary\FileDialogLibrary.csproj", "{E46E2D31-E207-4510-A1AF-1994D8D352B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExceptionLibrary", "ExceptionLibrary\ExceptionLibrary.csproj", "{41226182-7068-47C7-B755-85A018F4AD18}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{E615FDD6-CBAC-4B31-92DC-8D1A189B1687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTest.csproj", "{E615FDD6-CBAC-4B31-92DC-8D1A189B1687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,10 +77,6 @@ Global
 		{E46E2D31-E207-4510-A1AF-1994D8D352B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E46E2D31-E207-4510-A1AF-1994D8D352B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E46E2D31-E207-4510-A1AF-1994D8D352B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41226182-7068-47C7-B755-85A018F4AD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41226182-7068-47C7-B755-85A018F4AD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41226182-7068-47C7-B755-85A018F4AD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41226182-7068-47C7-B755-85A018F4AD18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E615FDD6-CBAC-4B31-92DC-8D1A189B1687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E615FDD6-CBAC-4B31-92DC-8D1A189B1687}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E615FDD6-CBAC-4B31-92DC-8D1A189B1687}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -9,12 +9,12 @@ namespace Homework_14.Services
     public class DialogLocatorService
     {
         /// <summary>
-        /// 
+        /// Сервис диалоговых окон по работе с клиентом банка
         /// </summary>
         public BankCustomerDialog BankCustomerDialog => App.Host.Services.GetRequiredService<BankCustomerDialog>();
 
         /// <summary>
-        /// 
+        /// Диалоговое окно отображения депозитарных счетов
         /// </summary>
         public DepositoryAccountDialog DepositoryAccountDialog => App.Host.Services.GetRequiredService<DepositoryAccountDialog>();
     }
