@@ -13,6 +13,7 @@ namespace DialogLibrary
         #region Закрытые поля
 
         private EntityCreator _entityCreator;
+        private DialogWindowsLocator _dialogWindowsLocator;
         private AddEditBankCustomerWindow _dialog;
 
         #endregion
@@ -23,7 +24,10 @@ namespace DialogLibrary
         /// <param name="clientStatus"> Статус клиента банка </param>        
         public IBankCustomer Create(Status clientStatus)
         {
-            _dialog = new AddEditBankCustomerWindow();
+            _dialog = _dialogWindowsLocator.GetAddEditBankCustomerWindow();
+            if(_dialog is null)
+                throw new ArgumentNullException();
+
             _dialog.Title = "Добавить нового клиента";
 
             if (_dialog.ShowDialog() != true) return null;
@@ -40,7 +44,10 @@ namespace DialogLibrary
             if (bankCustomer is null)
                 throw new ArgumentNullException("Клиент банка не может быть null!!!");
 
-            _dialog = new AddEditBankCustomerWindow();
+            _dialog = _dialogWindowsLocator.GetAddEditBankCustomerWindow();
+            if (_dialog is null)
+                throw new ArgumentNullException();
+
             _dialog.Title = "Редактировать данные клиента";
 
             FillInWindows(bankCustomer);
@@ -56,9 +63,16 @@ namespace DialogLibrary
             return tempBankCustomer;
         }
 
-        public BankCustomerDialog(EntityCreator entityCreator)
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="entityCreator"> Создатель сущностей </param>
+        /// <param name="dialogWindowsLocator"> Локатор диалоговых окон </param>
+        public BankCustomerDialog(EntityCreator entityCreator, 
+                                  DialogWindowsLocator dialogWindowsLocator)
         {
             _entityCreator = entityCreator;
+            _dialogWindowsLocator = dialogWindowsLocator;
         }
 
         #region Закрытые методы
@@ -69,9 +83,6 @@ namespace DialogLibrary
         /// <param name="clientStatus"> Статус клиента </param>
         private IBankCustomer CreateBankCustomer(Status clientStatus)
         {
-            if (_dialog is null)
-                throw new ArgumentNullException(nameof(_dialog));
-
             IAddress residenceAddress = null;
             IAddress registrationAddress = null;
             IPerson person = null;
@@ -134,11 +145,6 @@ namespace DialogLibrary
         /// <param name="bankCustomer"> Клиент банка </param>
         private void FillInWindows(IBankCustomer bankCustomer)
         {
-            if (_dialog is null)
-                throw new ArgumentNullException(nameof(_dialog));
-            if (bankCustomer is null)
-                throw new ArgumentNullException(nameof(bankCustomer));
-
             _dialog.PhoneNumber = bankCustomer.PhoneNumber;
             _dialog.Email = bankCustomer.Email;
             _dialog.Reliability = bankCustomer.Reliability;

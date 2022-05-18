@@ -15,6 +15,7 @@ namespace DialogLibrary
         private DepositoryAccountManager _depositoryAccountManager;
         private IBankCustomer _bankCustomer;
         private AddEditBankAccountWindow _dialog;
+        private DialogWindowsLocator _dialogWindowsLocator;
 
         #endregion
 
@@ -28,7 +29,7 @@ namespace DialogLibrary
                 throw new ArgumentNullException("Клиент банка не может быть null!!!");
             _bankCustomer = bankCustomer;
 
-            var dialog = new DepositoryAccountWindow();
+            var dialog = _dialogWindowsLocator.GetDepositoryAccountWindow();
 
             dialog.Title = "Список депозитарных счетов";
             dialog.DepositoryAccounts = _bankCustomer.DepositoryAccounts;
@@ -45,10 +46,12 @@ namespace DialogLibrary
         /// <param name="depositoryAccountManager"> Менеджер депозитарных счетов </param>
         /// <param name="entityCreator"> Создатель сущностей </param>
         public DepositoryAccountDialog(DepositoryAccountManager depositoryAccountManager, 
-                                       EntityCreator entityCreator)
+                                       EntityCreator entityCreator,
+                                       DialogWindowsLocator dialogWindowsLocator)
         {
             _depositoryAccountManager = depositoryAccountManager;
             _entityCreator = entityCreator;
+            _dialogWindowsLocator = dialogWindowsLocator;
         }
 
         #region Закрытые методы
@@ -63,7 +66,7 @@ namespace DialogLibrary
 
         private void CreateDepositoryAccount()
         {
-            _dialog = new AddEditBankAccountWindow();
+            _dialog = _dialogWindowsLocator.GetAddEditBankAccountWindow();
             if (_dialog.ShowDialog() != true) return;
 
             var depositoryAccount = CreateAccount();
@@ -76,7 +79,7 @@ namespace DialogLibrary
         {
             if (obj is IDepositoryAccount depositoryAccount)
             {
-                _dialog = new AddEditBankAccountWindow();
+                _dialog = _dialogWindowsLocator.GetAddEditBankAccountWindow();
 
                 _dialog.Amount = depositoryAccount.Amount;
                 _dialog.InterestRate = depositoryAccount.InterestRate;
