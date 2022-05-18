@@ -17,9 +17,9 @@ namespace ConverterLibrary
                 switch (index)
                 {
                     case Reliability.FIRST:
-                        return 0;                        
+                        return 0;
                     case Reliability.SECOND:
-                        return 1;                        
+                        return 1;
                     case Reliability.THIRD:
                         return 2;
                 }

@@ -1,5 +1,6 @@
 ﻿using EnumLibrary;
 using ModelLibrary;
+using ServiceLibrary;
 using System;
 
 namespace DialogLibrary
@@ -11,6 +12,7 @@ namespace DialogLibrary
     {
         #region Закрытые поля
 
+        private EntityCreator _entityCreator;
         private AddEditBankCustomerWindow _dialog;
 
         #endregion
@@ -54,6 +56,11 @@ namespace DialogLibrary
             return tempBankCustomer;
         }
 
+        public BankCustomerDialog(EntityCreator entityCreator)
+        {
+            _entityCreator = entityCreator;
+        }
+
         #region Закрытые методы
 
         /// <summary>
@@ -71,60 +78,59 @@ namespace DialogLibrary
             IDivisionCode divisionCode = null;
             IPassport passport = null;
 
-            residenceAddress = CreateAddress(_dialog.RegistrationDatePlaceOfResidence,
-                                             _dialog.RegionPlaceOfResidence,
-                                             _dialog.CityPlaceOfResidence,
-                                             _dialog.StreetPlaceOfResidence,
-                                             _dialog.HouseNumberPlaceOfResidence,
-                                             _dialog.ApartmentNumberPlaceOfResidence,
-                                             _dialog.HousingPlaceOfResidence,
-                                             _dialog.DistrictPlaceOfResidence);
+            residenceAddress = _entityCreator.CreateAddress(_dialog.RegistrationDatePlaceOfResidence,
+                                                            _dialog.RegionPlaceOfResidence,
+                                                            _dialog.CityPlaceOfResidence,
+                                                            _dialog.StreetPlaceOfResidence,
+                                                            _dialog.HouseNumberPlaceOfResidence,
+                                                            _dialog.ApartmentNumberPlaceOfResidence,
+                                                            _dialog.HousingPlaceOfResidence,
+                                                            _dialog.DistrictPlaceOfResidence);
 
             try
             {
-                registrationAddress = CreateAddress(_dialog.RegistrationDateRegistration,
-                                                    _dialog.RegionRegistration,
-                                                    _dialog.CityRegistration,
-                                                    _dialog.StreetRegistration,
-                                                    _dialog.HouseNumberRegistration,
-                                                    _dialog.ApartmentNumberRegistration,
-                                                    _dialog.HousingRegistration,
-                                                    _dialog.DistrictRegistration);
+                registrationAddress = _entityCreator.CreateAddress(_dialog.RegistrationDateRegistration,
+                                                                   _dialog.RegionRegistration,
+                                                                   _dialog.CityRegistration,
+                                                                   _dialog.StreetRegistration,
+                                                                   _dialog.HouseNumberRegistration,
+                                                                   _dialog.ApartmentNumberRegistration,
+                                                                   _dialog.HousingRegistration,
+                                                                   _dialog.DistrictRegistration);
             }
             catch (Exception)
             {}
 
-            person = CreatePerson(_dialog.SurnameBankCustomer,
-                                  _dialog.NameBankCustomer,
-                                  _dialog.PatronymicBankCustomer,
-                                  _dialog.GenderBankCustomer,
-                                  _dialog.BirthdayBankCustomer,
-                                  _dialog.PlaceOfBirthBankCustomer,
-                                  residenceAddress,
-                                  registrationAddress);
+            person = _entityCreator.CreatePerson(_dialog.SurnameBankCustomer,
+                                                 _dialog.NameBankCustomer,
+                                                 _dialog.PatronymicBankCustomer,
+                                                 _dialog.GenderBankCustomer,
+                                                 _dialog.BirthdayBankCustomer,
+                                                 _dialog.PlaceOfBirthBankCustomer,
+                                                 residenceAddress,
+                                                 registrationAddress);
 
-            divisionCode = CreateDivisionCode(_dialog.DivisionCodeLeftPassport,
-                                              _dialog.DivisionCodeRightPassport);
+            divisionCode = _entityCreator.CreateDivisionCode(_dialog.DivisionCodeLeftPassport,
+                                                             _dialog.DivisionCodeRightPassport);
 
-            passport = CreatePassport(_dialog.SeriesPassport,
-                                      _dialog.NumberPassport,
-                                      _dialog.PlaceOfIssuePassport,
-                                      _dialog.DateOfIssuePassport,
-                                      divisionCode,
-                                      person);
+            passport = _entityCreator.CreatePassport(_dialog.SeriesPassport,
+                                                     _dialog.NumberPassport,
+                                                     _dialog.PlaceOfIssuePassport,
+                                                     _dialog.DateOfIssuePassport,
+                                                     divisionCode,
+                                                     person);
 
-            return new BankCustomer(0,
-                                    passport,
-                                    clientStatus,
-                                    _dialog.Reliability,
-                                    _dialog.PhoneNumber,
-                                    _dialog.Email);
+            return _entityCreator.CreateBankCustomer(0,
+                                                     passport,
+                                                     clientStatus,
+                                                     _dialog.Reliability,
+                                                     _dialog.PhoneNumber,
+                                                     _dialog.Email);
         }
 
         /// <summary>
         /// Заполнение полей окна
-        /// </summary>
-        /// <param name="dialog"> Окно диалога </param>
+        /// </summary>        
         /// <param name="bankCustomer"> Клиент банка </param>
         private void FillInWindows(IBankCustomer bankCustomer)
         {
@@ -171,100 +177,6 @@ namespace DialogLibrary
                 _dialog.ApartmentNumberRegistration = bankCustomer.Passport.Holder.PlaceOfRegistration.ApartmentNumber;
                 _dialog.RegistrationDateRegistration = bankCustomer.Passport.Holder.PlaceOfRegistration.RegistrationDate;
             }
-        }
-
-        /// <summary>
-        /// Создание адреса
-        /// </summary>
-        /// <param name="registrationDate"> Дата регистрации </param>
-        /// <param name="region"> Регион или Область </param>
-        /// <param name="city"> Город </param>
-        /// <param name="street"> Улица </param>
-        /// <param name="houseNumber"> Дом </param>
-        /// <param name="apartmentNumber"> Номер квартиры </param>
-        /// <param name="housing"> Корпус дома </param>
-        /// <param name="district"> Район города </param>        
-        private IAddress CreateAddress(DateTime? registrationDate,
-                                       string region,
-                                       string city,
-                                       string street,
-                                       uint? houseNumber,
-                                       uint? apartmentNumber,
-                                       string housing,
-                                       string district)
-        {
-            return new Address(registrationDate,
-                               region,
-                               city,
-                               street,
-                               houseNumber,
-                               apartmentNumber,
-                               housing,
-                               district);                    
-        }
-
-        /// <summary>
-        /// Создание гражданина
-        /// </summary>
-        /// <param name="surname"> Фамилия </param>
-        /// <param name="name"> Имя </param>
-        /// <param name="patronymic"> Отчество </param>
-        /// <param name="gender"> Пол </param>
-        /// <param name="birthday"> День рождения </param>
-        /// <param name="placeOfBirth"> Место рождения </param>
-        /// <param name="placeOfResidence"> Место жительства (прописка) </param>
-        /// <param name="placeOfRegistration"> Место регистрации </param>
-        private IPerson CreatePerson(string surname,
-                                     string name,
-                                     string patronymic,
-                                     Gender gender,
-                                     DateTime? birthday,
-                                     string placeOfBirth,
-                                     IAddress placeOfResidence,
-                                     IAddress placeOfRegistration)
-        {
-            return new Person(surname,
-                              name,
-                              patronymic,
-                              gender,
-                              birthday,
-                              placeOfBirth,
-                              placeOfResidence,
-                              placeOfRegistration);
-        }
-
-        /// <summary>
-        /// Создание паспорта
-        /// </summary>
-        /// <param name="series"> Серия </param>
-        /// <param name="number"> Номер </param>
-        /// <param name="placeOfIssue"> Место выдачи </param>
-        /// <param name="dateOfIssue"> Дата выпуска </param>
-        /// <param name="divisionCode"> Код подразделения </param>
-        /// <param name="holder"> Владелец </param>
-        private IPassport CreatePassport(uint? series,
-                                         uint? number,
-                                         string placeOfIssue,
-                                         DateTime? dateOfIssue,
-                                         IDivisionCode divisionCode,
-                                         IPerson holder)
-        {
-            return new Passport(series,
-                                number,
-                                placeOfIssue,
-                                dateOfIssue,
-                                divisionCode,
-                                holder);
-        }
-
-        /// <summary>
-        /// Создать Код подразделения
-        /// </summary>
-        /// <param name="left"> Левая чать кода </param>
-        /// <param name="right"> Правая часть кода </param>        
-        private IDivisionCode CreateDivisionCode(uint? left, uint? right)
-        {
-            return new DivisionCode(left, right);
         }
 
         #endregion

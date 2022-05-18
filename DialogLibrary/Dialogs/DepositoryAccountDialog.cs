@@ -11,6 +11,7 @@ namespace DialogLibrary
     {
         #region Закрытые поля
 
+        private EntityCreator _entityCreator;
         private DepositoryAccountManager _depositoryAccountManager;
         private IBankCustomer _bankCustomer;
         private AddEditBankAccountWindow _dialog;
@@ -42,9 +43,12 @@ namespace DialogLibrary
         /// Конструктор
         /// </summary>
         /// <param name="depositoryAccountManager"> Менеджер депозитарных счетов </param>
-        public DepositoryAccountDialog(DepositoryAccountManager depositoryAccountManager)
+        /// <param name="entityCreator"> Создатель сущностей </param>
+        public DepositoryAccountDialog(DepositoryAccountManager depositoryAccountManager, 
+                                       EntityCreator entityCreator)
         {
             _depositoryAccountManager = depositoryAccountManager;
+            _entityCreator = entityCreator;
         }
 
         #region Закрытые методы
@@ -103,10 +107,10 @@ namespace DialogLibrary
             var interestRate = _dialog.InterestRate;
             if (interestRate == 0 && interestRate is null) return null;
 
-            return new DepositoryAccount(0,
-                                         amount,
-                                         interestRate,
-                                         _dialog.SelectedDepositStatus);
+            return _entityCreator.CreateDepositoryAccount(0,
+                                                          amount,
+                                                          interestRate,
+                                                          _dialog.SelectedDepositStatus);
         }
 
         #endregion

@@ -70,6 +70,7 @@ namespace Homework_14
         /// </summary>        
         public static IServiceCollection RegisterDialogWindows(this IServiceCollection services)
         {
+            services.AddTransient<EntityCreator>();
             services.AddTransient<BankCustomerDialog>();
             services.AddTransient<DepositoryAccountDialog>();
 
