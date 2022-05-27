@@ -20,7 +20,7 @@ namespace Homework_14
         /// <summary>
         /// Создание хоста
         /// </summary>
-        /// <param name="Args"> Аргументы командной строки </param>        
+        /// <param name="args"> Аргументы командной строки </param>        
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             var host_builder = Host.CreateDefaultBuilder(args);
