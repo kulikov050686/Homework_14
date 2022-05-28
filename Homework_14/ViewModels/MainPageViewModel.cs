@@ -3,6 +3,7 @@ using CommandLibrary;
 using Homework_14.Services;
 using ServiceLibrary;
 using System.Windows.Input;
+using System;
 
 namespace Homework_14.ViewModels
 {
@@ -57,9 +58,17 @@ namespace Homework_14.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>        
         public MainPageViewModel(PageNavigator pageNavigator,
                                  PageLocatorService pageLocatorService)
         {
+            if(pageNavigator is null)
+                throw new ArgumentNullException(nameof(pageNavigator), "Навигатор страниц не может быть null!!!");
+            if(pageLocatorService is null)
+                throw new ArgumentNullException(nameof(pageLocatorService), "Локатор страниц не может быть null!!!");
+
             _pageNavigator = pageNavigator;
             _pageLocatorService = pageLocatorService;
         }

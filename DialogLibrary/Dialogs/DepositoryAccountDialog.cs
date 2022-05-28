@@ -42,13 +42,18 @@ namespace DialogLibrary
 
         /// <summary>
         /// Конструктор
-        /// </summary>
-        /// <param name="depositoryAccountManager"> Менеджер депозитарных счетов </param>
-        /// <param name="entityCreator"> Создатель сущностей </param>
+        /// </summary>        
         public DepositoryAccountDialog(DepositoryAccountManager depositoryAccountManager, 
                                        EntityCreator entityCreator,
                                        DialogWindowsLocator dialogWindowsLocator)
         {
+            if (depositoryAccountManager is null)
+                throw new ArgumentNullException(nameof(depositoryAccountManager), "Менеджер депозитарных счетов не может быть null!!!");
+            if (entityCreator is null)
+                throw new ArgumentNullException(nameof(entityCreator), "Создатель сущностей не может быть null!!!");
+            if (dialogWindowsLocator is null)
+                throw new ArgumentNullException(nameof(dialogWindowsLocator), "Локатор диалоговых окон не может быть null!!!");
+
             _depositoryAccountManager = depositoryAccountManager;
             _entityCreator = entityCreator;
             _dialogWindowsLocator = dialogWindowsLocator;

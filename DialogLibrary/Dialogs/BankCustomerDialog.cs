@@ -1,6 +1,5 @@
 ﻿using EnumLibrary;
 using ModelLibrary;
-using ServiceLibrary;
 using System;
 
 namespace DialogLibrary
@@ -71,6 +70,11 @@ namespace DialogLibrary
         public BankCustomerDialog(EntityCreator entityCreator, 
                                   DialogWindowsLocator dialogWindowsLocator)
         {
+            if (entityCreator is null)
+                throw new ArgumentNullException(nameof(entityCreator), "Создатель сущностей не может быть null!!!");
+            if (dialogWindowsLocator is null) 
+                throw new ArgumentNullException(nameof(dialogWindowsLocator), "Локатор диалоговых окон не может быть null!!!");
+
             _entityCreator = entityCreator;
             _dialogWindowsLocator = dialogWindowsLocator;
         }

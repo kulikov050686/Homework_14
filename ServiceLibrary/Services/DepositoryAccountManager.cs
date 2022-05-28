@@ -91,6 +91,11 @@ namespace ServiceLibrary
         public DepositoryAccountManager(DepositoryAccountRepository depositoryAccountRepository,
                                         BankCustomerManager bankCustomersManager)
         {
+            if(depositoryAccountRepository is null)
+                throw new ArgumentNullException(nameof(depositoryAccountRepository), "Хранилище депозитарных счетов клиентов банка не может быть null!!!");
+            if(bankCustomersManager is null)
+                throw new ArgumentNullException(nameof(bankCustomersManager), "Хранилище клиентов банка не может быть null!!!");
+
             _bankCustomerManager = bankCustomersManager;
             _depositoryAccountRepository = depositoryAccountRepository;
         }

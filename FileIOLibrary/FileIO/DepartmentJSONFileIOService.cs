@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ModelLibrary;
+using System;
 
 namespace FileIOLibrary
 {
@@ -73,6 +74,9 @@ namespace FileIOLibrary
         /// <param name="entityCreator"> Создатель сущностей </param>
         public DepartmentJSONFileIOService(EntityCreator entityCreator)
         {
+            if(entityCreator is null) 
+                throw new ArgumentNullException(nameof(entityCreator), "Создатель сущностей не может быть null!!!");
+
             _entityCreator = entityCreator;
         }
 

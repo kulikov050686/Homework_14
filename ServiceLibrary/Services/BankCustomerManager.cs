@@ -110,6 +110,11 @@ namespace ServiceLibrary
         public BankCustomerManager(BankCustomerRepository bankCustomerRepository,
                                    BankDepartmentRepository bankDepartmentRepository)
         {
+            if (bankCustomerRepository is null)
+                throw new ArgumentNullException(nameof(bankCustomerRepository), "Хранилище клиентов банка не может быть null!!!");
+            if (bankDepartmentRepository is null)
+                throw new ArgumentNullException(nameof(bankDepartmentRepository), "Хранилище департаментов банка не может быть null!!!");
+
             _bankCustomerRepository = bankCustomerRepository;
             _bankDepartmentRepository = bankDepartmentRepository;
         }

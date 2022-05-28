@@ -136,7 +136,6 @@ namespace Homework_14.ViewModels
             }, (obj) => SelectedBankCustomer != null);
         }
 
-
         #endregion
 
         #region Конструктор
@@ -147,6 +146,15 @@ namespace Homework_14.ViewModels
                                                DialogLocatorService dialogLocatorService,
                                                BankDepartmentPage bankDepartmentPage)
         {
+            if(managerLocatorService is null)
+                throw new ArgumentNullException(nameof(managerLocatorService), "Локатор менеджеров не может быть null!!!");            
+            if(pageLocatorService is null)
+                throw new ArgumentNullException(nameof(pageLocatorService), "Локатор страниц не может быть null!!!");
+            if(pageNavigator is null)
+                throw new ArgumentNullException(nameof(pageNavigator), "Навигатор страниц не может быть null!!!");
+            if(dialogLocatorService is null)
+                throw new ArgumentNullException(nameof(dialogLocatorService), "Локатор диалоговых окон не может быть null!!!");
+
             _managerLocatorService = managerLocatorService;
             _pageLocatorService = pageLocatorService;
             _pageNavigator = pageNavigator;
@@ -164,7 +172,7 @@ namespace Homework_14.ViewModels
                     _bankDepartment = _managerLocatorService.BankDepartmentManager.Departments[2];
                     break;
                 default:
-                    throw new ArgumentException();
+                    throw new ArgumentException("Ошибка страницы!!!");
             }
         }
 

@@ -2,6 +2,7 @@
 using Homework_14.Services;
 using ServiceLibrary;
 using System.Windows.Controls;
+using System;
 
 namespace Homework_14.ViewModels
 {
@@ -39,6 +40,13 @@ namespace Homework_14.ViewModels
                                    PageLocatorService pageLocatorService,
                                    ProcessingOfDepositoryAccounts processingOfDepositoryAccounts)
         {
+            if (pageNavigatorService is null)
+                throw new ArgumentNullException(nameof(pageNavigatorService), "Навигатор страниц не может быть null!!!");
+            if (pageLocatorService is null)
+                throw new ArgumentNullException(nameof(pageLocatorService), "Локатор страниц не может быть null!!!");
+            if (processingOfDepositoryAccounts is null)
+                throw new ArgumentNullException(nameof(processingOfDepositoryAccounts), "Обработчик депозитарных счетов не может быть null!!!");
+
             Title = "Банк";
 
             _pageNavigator = pageNavigatorService;

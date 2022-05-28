@@ -51,6 +51,9 @@ namespace Homework_14.Services
         /// </summary>        
         public ProcessingOfDepositoryAccounts(DepositoryAccountManager depositoryAccountsManager)
         {
+            if(depositoryAccountsManager is null) 
+                throw new ArgumentNullException(nameof(depositoryAccountsManager), "Менеджер депозитарных счетов не может быть null!!!");
+
             _depositoryAccountManager = depositoryAccountsManager;                        
         }
 

@@ -1,5 +1,6 @@
 ﻿using ModelLibrary;
 using System.Collections.Generic;
+using System;
 
 namespace ServiceLibrary
 {
@@ -37,6 +38,9 @@ namespace ServiceLibrary
         /// <param name="bankDepartmentRepository"> Хранилище департаментов банка </param>
         public BankDepartmentManager(BankDepartmentRepository bankDepartmentRepository)
         {
+            if(bankDepartmentRepository is null)
+                throw new ArgumentOutOfRangeException(nameof(bankDepartmentRepository), "Хранилище департаментов банка не может быть null!!!");
+
             _bankDepartmentRepository = bankDepartmentRepository;
         }
     }
