@@ -11,6 +11,12 @@ namespace FileIOLibrary
     /// </summary>    
     public class DepartmentJSONFileIOService : IFileIOService<IList<IBankDepartment>>
     {
+        #region Закрытые поля
+
+        EntityCreator _entityCreator;
+
+        #endregion
+
         /// <summary>
         /// Сохранить данные в файл формата JSON
         /// </summary>
@@ -61,6 +67,15 @@ namespace FileIOLibrary
             }
         }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="entityCreator"> Создатель сущностей </param>
+        public DepartmentJSONFileIOService(EntityCreator entityCreator)
+        {
+            _entityCreator = entityCreator;
+        }
+
         #region Закрытые методы
 
         /// <summary>
@@ -74,7 +89,7 @@ namespace FileIOLibrary
             ObservableCollection<IBankDepartment> departments = new ObservableCollection<IBankDepartment>();
             foreach (var item in data)
             {
-                BankDepartment department = new BankDepartment(item.Id, item.Name, item.StatusDepartment);
+                IBankDepartment department = _entityCreator.CreateBankDepartment(item.Id, item.Name, item.StatusDepartment);
                 departments.Add(department);
             }
 
@@ -92,50 +107,50 @@ namespace FileIOLibrary
             ObservableCollection<IBankCustomer> bankCustomers = new ObservableCollection<IBankCustomer>();
             foreach (var item in data)
             {
-                Address placeOfResidence = new Address(item.Passport.Holder.PlaceOfResidence.RegistrationDate,
-                                                       item.Passport.Holder.PlaceOfResidence.Region,
-                                                       item.Passport.Holder.PlaceOfResidence.City,
-                                                       item.Passport.Holder.PlaceOfResidence.Street,
-                                                       item.Passport.Holder.PlaceOfResidence.HouseNumber,
-                                                       item.Passport.Holder.PlaceOfResidence.ApartmentNumber,
-                                                       item.Passport.Holder.PlaceOfResidence.Housing,
-                                                       item.Passport.Holder.PlaceOfResidence.District);
+                IAddress placeOfResidence = _entityCreator.CreateAddress(item.Passport.Holder.PlaceOfResidence.RegistrationDate,
+                                                                         item.Passport.Holder.PlaceOfResidence.Region,
+                                                                         item.Passport.Holder.PlaceOfResidence.City,
+                                                                         item.Passport.Holder.PlaceOfResidence.Street,
+                                                                         item.Passport.Holder.PlaceOfResidence.HouseNumber,
+                                                                         item.Passport.Holder.PlaceOfResidence.ApartmentNumber,
+                                                                         item.Passport.Holder.PlaceOfResidence.Housing,
+                                                                         item.Passport.Holder.PlaceOfResidence.District);
 
-                Address placeOfRegistration = null;
+                IAddress placeOfRegistration = null;
                 if (item.Passport.Holder.PlaceOfRegistration != null)
                 {
-                    placeOfRegistration = new Address(item.Passport.Holder.PlaceOfRegistration.RegistrationDate,
-                                                      item.Passport.Holder.PlaceOfRegistration.Region,
-                                                      item.Passport.Holder.PlaceOfRegistration.City,
-                                                      item.Passport.Holder.PlaceOfRegistration.Street,
-                                                      item.Passport.Holder.PlaceOfRegistration.HouseNumber,
-                                                      item.Passport.Holder.PlaceOfRegistration.ApartmentNumber,
-                                                      item.Passport.Holder.PlaceOfRegistration.Housing,
-                                                      item.Passport.Holder.PlaceOfRegistration.District);
+                    placeOfRegistration = _entityCreator.CreateAddress(item.Passport.Holder.PlaceOfRegistration.RegistrationDate,
+                                                                       item.Passport.Holder.PlaceOfRegistration.Region,
+                                                                       item.Passport.Holder.PlaceOfRegistration.City,
+                                                                       item.Passport.Holder.PlaceOfRegistration.Street,
+                                                                       item.Passport.Holder.PlaceOfRegistration.HouseNumber,
+                                                                       item.Passport.Holder.PlaceOfRegistration.ApartmentNumber,
+                                                                       item.Passport.Holder.PlaceOfRegistration.Housing,
+                                                                       item.Passport.Holder.PlaceOfRegistration.District);
                 }
 
-                Person person = new Person(item.Passport.Holder.Surname,
-                                           item.Passport.Holder.Name,
-                                           item.Passport.Holder.Patronymic,
-                                           item.Passport.Holder.Gender,
-                                           item.Passport.Holder.Birthday,
-                                           item.Passport.Holder.PlaceOfBirth,
-                                           placeOfResidence,
-                                           placeOfRegistration);
+                IPerson person = _entityCreator.CreatePerson(item.Passport.Holder.Surname,
+                                                             item.Passport.Holder.Name,
+                                                             item.Passport.Holder.Patronymic,
+                                                             item.Passport.Holder.Gender,
+                                                             item.Passport.Holder.Birthday,
+                                                             item.Passport.Holder.PlaceOfBirth,
+                                                             placeOfResidence,
+                                                             placeOfRegistration);
 
-                Passport passport = new Passport(item.Passport.Series,
-                                                 item.Passport.Number,
-                                                 item.Passport.PlaceOfIssue,
-                                                 item.Passport.DateOfIssue,
-                                                 item.Passport.DivisionCode,
-                                                 person);
+                IPassport passport = _entityCreator.CreatePassport(item.Passport.Series,
+                                                                   item.Passport.Number,
+                                                                   item.Passport.PlaceOfIssue,
+                                                                   item.Passport.DateOfIssue,
+                                                                   item.Passport.DivisionCode,
+                                                                   person);
 
-                BankCustomer bankCustomer = new BankCustomer(item.Id,
-                                                             passport,
-                                                             item.ClientStatus,
-                                                             item.Reliability,
-                                                             item.PhoneNumber,
-                                                             item.Email);
+                IBankCustomer bankCustomer = _entityCreator.CreateBankCustomer(item.Id,
+                                                                               passport,
+                                                                               item.ClientStatus,
+                                                                               item.Reliability,
+                                                                               item.PhoneNumber,
+                                                                               item.Email);
 
                 bankCustomers.Add(bankCustomer);
             }

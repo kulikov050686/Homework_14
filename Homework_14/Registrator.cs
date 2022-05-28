@@ -4,6 +4,7 @@ using Homework_14.Pages;
 using Homework_14.Services;
 using Homework_14.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using ModelLibrary;
 using ServiceLibrary;
 
 namespace Homework_14
@@ -29,6 +30,8 @@ namespace Homework_14
 
             services.AddTransient<PageLocatorService>();
             services.AddTransient<ManagerLocatorService>();
+
+            services.AddTransient<EntityCreator>();
 
             services.AddTransient<DepartmentJSONFileIOService>();
             services.AddTransient<ProcessingOfDepositoryAccounts>();
@@ -70,7 +73,6 @@ namespace Homework_14
         /// </summary>        
         public static IServiceCollection RegisterDialogWindows(this IServiceCollection services)
         {
-            services.AddTransient<EntityCreator>();
             services.AddTransient<DialogWindowsLocator>();
             services.AddTransient<BankCustomerDialog>();
             services.AddTransient<DepositoryAccountDialog>();

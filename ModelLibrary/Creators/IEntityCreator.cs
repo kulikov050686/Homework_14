@@ -1,8 +1,7 @@
 ﻿using EnumLibrary;
-using ModelLibrary;
 using System;
 
-namespace ServiceLibrary
+namespace ModelLibrary
 {
     /// <summary>
     /// Интерфейс создатель сущностей
