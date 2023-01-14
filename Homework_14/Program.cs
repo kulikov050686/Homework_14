@@ -20,21 +20,16 @@ namespace Homework_14
         /// <summary>
         /// Создание хоста
         /// </summary>
-        /// <param name="args"> Аргументы командной строки </param>        
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            var host_builder = Host.CreateDefaultBuilder(args);
-
-            host_builder.UseContentRoot(Environment.CurrentDirectory);
-            host_builder.ConfigureAppConfiguration((host, cfg) =>
+        /// <param name="args"> Аргументы командной строки </param>      
+        public static IHostBuilder CreateHostBuilder(string[] args) => Host
+            .CreateDefaultBuilder(args)
+            .UseContentRoot(Environment.CurrentDirectory)
+            .ConfigureAppConfiguration((host, cfg) => 
             {
                 cfg.SetBasePath(Environment.CurrentDirectory);
                 cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            });
-
-            host_builder.ConfigureServices(App.ConfigureServices);
-
-            return host_builder;
-        }
+            })
+            .ConfigureServices(App.ConfigureServices)
+        ;
     }
 }

@@ -26,17 +26,14 @@ namespace ModelLibrary
                                       uint? houseNumber, 
                                       uint? apartmentNumber, 
                                       string housing, 
-                                      string district)
-        {
-            return new Address(registrationDate,
-                               region,
-                               city,
-                               street,
-                               houseNumber,
-                               apartmentNumber,
-                               housing,
-                               district);
-        }
+                                      string district) => new Address(registrationDate,
+                                                                      region,
+                                                                      city,
+                                                                      street,
+                                                                      houseNumber,
+                                                                      apartmentNumber,
+                                                                      housing,
+                                                                      district);        
 
         /// <summary>
         /// Создать клиента банка
@@ -52,10 +49,12 @@ namespace ModelLibrary
                                                 Status clientStatus, 
                                                 Reliability reliability, 
                                                 string phoneNumber, 
-                                                string email = null)
-        {
-            return new BankCustomer(id, passport, clientStatus, reliability, phoneNumber, email);
-        }
+                                                string email = null) => new BankCustomer(id, 
+                                                                                         passport, 
+                                                                                         clientStatus, 
+                                                                                         reliability, 
+                                                                                         phoneNumber, 
+                                                                                         email);
 
         /// <summary>
         /// Создать департамент банка
@@ -63,10 +62,11 @@ namespace ModelLibrary
         /// <param name="id"> Идентификатор </param>
         /// <param name="name"> Название </param>
         /// <param name="statusDepartment"> Статус </param>
-        public IBankDepartment CreateBankDepartment(ulong id, string name, Status statusDepartment)
-        {
-            return new BankDepartment(id, name, statusDepartment);
-        }
+        public IBankDepartment CreateBankDepartment(ulong id, 
+                                                    string name, 
+                                                    Status statusDepartment) => new BankDepartment(id, 
+                                                                                                   name, 
+                                                                                                   statusDepartment);
         
         /// <summary>
         /// Создать депозитарный счёт
@@ -78,21 +78,18 @@ namespace ModelLibrary
         public IDepositoryAccount CreateDepositoryAccount(ulong id, 
                                                           double? amount, 
                                                           double? interestRate, 
-                                                          DepositStatus depositStatus)
-        {
-            return new DepositoryAccount(id, amount, interestRate, depositStatus); 
-        }
-
+                                                          DepositStatus depositStatus) => new DepositoryAccount(id, 
+                                                                                                                amount, 
+                                                                                                                interestRate,
+                                                                                                                depositStatus);
+        
         /// <summary>
         /// Создать Код подразделения
         /// </summary>
         /// <param name="left"> Левая чать кода </param>
         /// <param name="right"> Правая часть кода </param>
-        public IDivisionCode CreateDivisionCode(uint? left, uint? right)
-        {
-            return new DivisionCode(left, right);
-        }
-
+        public IDivisionCode CreateDivisionCode(uint? left, uint? right) => new DivisionCode(left, right);
+        
         /// <summary>
         /// Создание паспорта
         /// </summary>
@@ -107,11 +104,13 @@ namespace ModelLibrary
                                         string placeOfIssue, 
                                         DateTime? dateOfIssue, 
                                         IDivisionCode divisionCode, 
-                                        IPerson holder)
-        {
-            return new Passport(series, number, placeOfIssue, dateOfIssue, divisionCode, holder);
-        }
-
+                                        IPerson holder) => new Passport(series, 
+                                                                        number, 
+                                                                        placeOfIssue, 
+                                                                        dateOfIssue, 
+                                                                        divisionCode, 
+                                                                        holder);
+        
         /// <summary>
         /// Создание гражданина
         /// </summary>
@@ -130,9 +129,13 @@ namespace ModelLibrary
                                     DateTime? birthday, 
                                     string placeOfBirth, 
                                     IAddress placeOfResidence, 
-                                    IAddress placeOfRegistration)
-        {
-            return new Person(surname, name, patronymic, gender, birthday, placeOfBirth, placeOfResidence, placeOfRegistration);
-        }
+                                    IAddress placeOfRegistration) => new Person(surname, 
+                                                                                name, 
+                                                                                patronymic, 
+                                                                                gender, 
+                                                                                birthday, 
+                                                                                placeOfBirth, 
+                                                                                placeOfResidence, 
+                                                                                placeOfRegistration);
     }
 }

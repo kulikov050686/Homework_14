@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UserControlLibrary"
              xmlns:converter ="clr-namespace:ConverterLibrary;assembly=ConverterLibrary"
              mc:Ignorable="d"
-             Width="217">
+             Width="220">
 
     <GroupBox Header="{Binding TitleUC, RelativeSource={RelativeSource AncestorType=local:PersonUserControl}}"
               FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:PersonUserControl}, Mode=TwoWay}">

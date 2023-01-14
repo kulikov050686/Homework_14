@@ -17,13 +17,12 @@ namespace Homework_14
         /// <summary>
         /// Метод конфигурации сервисов
         /// </summary>        
-        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
-        {
-            services.RegisterServices().RegisterViewModels();
-            services.RegisterServices().RegisterServices();
-            services.RegisterServices().RegisterPages();
-            services.RegisterServices().RegisterDialogWindows();
-        }
+        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
+            .RegisterViewModels()
+            .RegisterServices()
+            .RegisterPages()
+            .RegisterDialogWindows()
+        ;        
 
         /// <summary>
         /// Метод запуска

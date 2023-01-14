@@ -17,69 +17,51 @@ namespace Homework_14
         /// <summary>
         /// Регистрация всех сервисов
         /// </summary>              
-        public static IServiceCollection RegisterServices(this IServiceCollection services)
-        {
-            services.AddSingleton<BankDepartmentRepository>();
-            services.AddSingleton<BankCustomerRepository>();
-            services.AddSingleton<DepositoryAccountRepository>();
-            services.AddSingleton<PageNavigator>();
-
-            services.AddTransient<BankDepartmentManager>();
-            services.AddTransient<BankCustomerManager>();
-            services.AddTransient<DepositoryAccountManager>();
-
-            services.AddTransient<PageLocatorService>();
-            services.AddTransient<ManagerLocatorService>();
-
-            services.AddTransient<EntityCreator>();
-
-            services.AddTransient<DepartmentJSONFileIOService>();
-            services.AddTransient<ProcessingOfDepositoryAccounts>();
-
-            return services;
-        }
+        public static IServiceCollection RegisterServices(this IServiceCollection services) => services
+            .AddSingleton<BankDepartmentRepository>()
+            .AddSingleton<BankCustomerRepository>()
+            .AddSingleton<DepositoryAccountRepository>()
+            .AddSingleton<PageNavigator>()
+            .AddTransient<BankDepartmentManager>()
+            .AddTransient<BankCustomerManager>()
+            .AddTransient<DepositoryAccountManager>()
+            .AddTransient<PageLocatorService>()
+            .AddTransient<ManagerLocatorService>()
+            .AddTransient<EntityCreator>()
+            .AddTransient<DepartmentJSONFileIOService>()
+            .AddTransient<ProcessingOfDepositoryAccounts>()
+        ;        
 
         /// <summary>
         /// Регистрация всех моделей-представления
         /// </summary>           
-        public static IServiceCollection RegisterViewModels(this IServiceCollection services)
-        {
-            services.AddSingleton<MainWindowViewModel>();
-
-            services.AddTransient<MainPageViewModel>();
-            services.AddTransient<UsualBankDepartmentPageViewModel>();
-            services.AddTransient<VipBankDepartmentPageViewModel>();
-            services.AddTransient<JuridicalBankDepartmentPageViewModel>();
-            services.AddTransient<MainMenuViewModel>();
-
-            return services;
-        }
+        public static IServiceCollection RegisterViewModels(this IServiceCollection services) => services
+            .AddSingleton<MainWindowViewModel>()
+            .AddTransient<MainPageViewModel>()
+            .AddTransient<UsualBankDepartmentPageViewModel>()
+            .AddTransient<VipBankDepartmentPageViewModel>()
+            .AddTransient<JuridicalBankDepartmentPageViewModel>()
+            .AddTransient<MainMenuViewModel>()
+        ;        
 
         /// <summary>
         /// Регистрация всех страниц
         /// </summary>            
-        public static IServiceCollection RegisterPages(this IServiceCollection services)
-        {
-            services.AddTransient<MainPage>();
-            services.AddTransient<UsualBankDepartmentPage>();
-            services.AddTransient<VipBankDepartmentPage>();
-            services.AddTransient<JuridicalBankDepartmentPage>();
-
-            return services;
-        }
+        public static IServiceCollection RegisterPages(this IServiceCollection services) => services
+            .AddTransient<MainPage>()
+            .AddTransient<UsualBankDepartmentPage>()
+            .AddTransient<VipBankDepartmentPage>()
+            .AddTransient<JuridicalBankDepartmentPage>()
+        ;        
 
         /// <summary>
         /// Регистрация всех диалоговых окон
         /// </summary>        
-        public static IServiceCollection RegisterDialogWindows(this IServiceCollection services)
-        {
-            services.AddTransient<DialogWindowsLocator>();
-            services.AddTransient<BankCustomerDialog>();
-            services.AddTransient<DepositoryAccountDialog>();
-
-            services.AddTransient<DialogLocatorService>();
-
-            return services;
-        }
+        public static IServiceCollection RegisterDialogWindows(this IServiceCollection services) => services
+            .AddTransient<DialogWindowsLocator>()
+            .AddTransient<BankCustomerDialog>()
+            .AddTransient<DepositoryAccountDialog>()
+            .AddTransient<DialogLocatorService>()
+        ;       
     }
 }
